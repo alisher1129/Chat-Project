@@ -1,6 +1,7 @@
 import Registration from './components/SignUp/Registration';
 import { Routes, Route } from 'react-router-dom';
 import UserLogin from './components/Login/UserLogin';
+import HomePage from './components/Home/HomePage';
 function App() {
   return (
 
@@ -8,9 +9,9 @@ function App() {
 
     <>
       <Routes>
-
-        <Route path="/userlogin" element={<UserLogin />}/>
-        <Route path="/userregister" element={<Registration />}/>
+      <Route path="/" element={<HomePage />}/>
+        <Route path="/login" element={<UserLogin />}/>
+        <Route path="/signup" element={<Registration />}/>
 
       </Routes>
       
@@ -18,4 +19,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;   

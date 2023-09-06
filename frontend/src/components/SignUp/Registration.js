@@ -1,7 +1,8 @@
 import { useFormik } from 'formik'
 import { Link } from "react-router-dom";
 import React from 'react'
-import { signUpSchemas } from '../schemas/Yup';
+import { signUpSchemas } from '../schemas/SignUpYup';
+import axios from "axios";
 // import UserLogin from '../Login/UserLogin';
 
 
@@ -16,7 +17,15 @@ function Registration() {
         initialValues: initialValues,
         validationSchema: signUpSchemas,
         onSubmit: (values, action) => {
-            console.log("Value of form ", values);
+            axios.post("http://localhost:4000/register", {
+                username: values.name,
+                email: values.email,
+                mobile: values.mobile,
+                password: values.password,
+
+            }).then((res) => console.log("Backend Connected")).catch((err) => console.log("Not Connected", err))
+
+            // console.log("Value of form ", values);
             action.resetForm();
         },
 
@@ -25,7 +34,7 @@ function Registration() {
         <>
             <form onSubmit={handleSubmit} >
                 <div>
-                    <label>Name</label>
+                    <label>Username</label>
                     <br />
                     <input type='text'
                         autoComplete='off'
@@ -87,15 +96,15 @@ function Registration() {
                 </div>
 
                 <div>
+
+                    <Link to="/login">Login </Link>
+
+
+
+                    if Already Have an Account ?
+
+
                     
-                        <Link to="/UserLogin">Login </Link>
-
-                        
-
-                        if Already Have an Account ?
-                        
-
-                    {/* <a href='#'>Login if Already Have an Account ?</a> */}
                     <br />
                     <button type=''>Registration</button>
                 </div>

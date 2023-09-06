@@ -4,10 +4,10 @@ const app = express();
 
 app.use(express.json());
 const cors = require("cors");
-
+require("dotenv").config();
 app.use(express.urlencoded({ extended: false }));
 
-require("./MailSend/SendGrid")
+// require("./MailSend/SendGrid")
 
 app.use(cors());
 app.use("/", route);
@@ -15,6 +15,6 @@ require('./config/db')
 // require("./models/userModel");
 
 
-app.listen(3000, () => {
+app.listen(4000, () => {
     console.log("Server is Working")
 })
