@@ -7,23 +7,30 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+
   },
   username: {
     type: String,
     required: true,
-    unique: true,
+    
   },
   mobile: {
     type: Number,
     required: true,
-    unique: true,
-  }, 
+  
+  },
   password: {
     type: String,
     required: true,
   },
- 
+  token: {
+    type: String
+  },
+  isVerified: {
+    type: Boolean,
+    default: false
+  }
+
   // ...
 });
 
