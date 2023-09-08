@@ -1,16 +1,17 @@
 const {loginUser} = require('../services/loginServices');
 
 class LoginController {
-    async LoginUser(req, res) {
+    async LoginUser(req,res) {
         try {
             const user = await loginUser(req);
+            
             if(user) {
-                console.log('User Passed');
-                return res.send("Logged in");
+                res.send("Logged in")
+                console.log('User Passed')
             }
             else{
                 console.log('User Failed');
-                return res.send("Invalid username or password");
+                res.send("Invalid username or password");
             }
         } catch (error) {
             console.log(error);

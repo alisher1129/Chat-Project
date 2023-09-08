@@ -13,7 +13,8 @@ class LoginService {
             else{
                 return false;
             }
-        } catch (error) {
+        } 
+        catch (error) {
             console.log(error);
         }
     }  

@@ -10,7 +10,6 @@ function HomePage() {
  <br></br>
  <Link to="/login" >Login</Link>
 
-
     </div>
   )
 }
