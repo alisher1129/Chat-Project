@@ -12,12 +12,12 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    
+
   },
   mobile: {
     type: Number,
     required: true,
-  
+
   },
   password: {
     type: String,
@@ -29,7 +29,15 @@ const userSchema = new mongoose.Schema({
   isVerified: {
     type: Boolean,
     default: false
+  },
+  Payment: {
+    type: Boolean,
+    default: false
+  },
+   Plan: {
+    type: Number
   }
+
 
   // ...
 });

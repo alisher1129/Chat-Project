@@ -22,22 +22,23 @@ const CARD_OPTIONS = {
     }
 }
 
-function PaymentForm() {
+function PaymentFormTwo() {
     const [success, setSuccess] = useState(false)
     const stripe = useStripe()
     const elements = useElements()
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e , action) => {
         e.preventDefault()
+      
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: "card",
             card: elements.getElement(CardCvcElement, CardExpiryElement, CardNumberElement)
         })
-
+        
         if (!error) {
             try {
                 const { id } = paymentMethod
                 const response = await axios.post("http://localhost:4000/payment", {
-                    amount: 10000,
+                    amount: 20000,
                     id
                 })
 
@@ -52,11 +53,12 @@ function PaymentForm() {
         } else {
             console.log(error.message)
         }
+        
     }
     return (
         <>
             {!success ?
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}  >
                     <fieldset className='FormGroup'>
                         <div className="FormRow">
                             <CardNumberElement options={CARD_OPTIONS} />
@@ -84,4 +86,4 @@ function PaymentForm() {
     )
 }
 
-export default PaymentForm;
+export default PaymentFormTwo;
