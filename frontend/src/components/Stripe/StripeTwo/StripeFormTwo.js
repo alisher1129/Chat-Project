@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate} from "react-router-dom"
 import { CardNumberElement, CardCvcElement, CardExpiryElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
+
 const CARD_OPTIONS = {
     iconStyle: "solid",
     style: {
@@ -23,37 +25,46 @@ const CARD_OPTIONS = {
 }
 
 function PaymentFormTwo() {
+    const navigate = useNavigate();
     const [success, setSuccess] = useState(false)
     const stripe = useStripe()
     const elements = useElements()
-    const handleSubmit = async (e , action) => {
+    const handleSubmit = async (e, action) => {
         e.preventDefault()
-      
+
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: "card",
             card: elements.getElement(CardCvcElement, CardExpiryElement, CardNumberElement)
         })
-        
+
         if (!error) {
             try {
                 const { id } = paymentMethod
                 const response = await axios.post("http://localhost:4000/payment", {
                     amount: 20000,
                     id
+                }, {
+                    headers: {
+                        "x-access-token": localStorage.getItem("token")
+                    }
                 })
 
                 if (response.data.success) {
                     console.log("Successful Payment")
                     setSuccess(true)
+                   
                 }
+                navigate('/user');
+                
 
-            } catch (error) {
+            }
+            catch (error) {
                 console.log("Error", error)
             }
         } else {
             console.log(error.message)
         }
-        
+
     }
     return (
         <>

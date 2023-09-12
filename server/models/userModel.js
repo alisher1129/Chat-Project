@@ -6,36 +6,42 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: true,
+    // required: true,
 
   },
   username: {
     type: String,
-    required: true,
+    // required: true,
 
   },
   mobile: {
     type: Number,
-    required: true,
+    // required: true,
 
   },
   password: {
     type: String,
-    required: true,
+    // required: true,
   },
   token: {
     type: String
   },
   isVerified: {
     type: Boolean,
-    default: false
+    // default: false
   },
-  Payment: {
+  userId:{
+  type:String
+  },
+  payment: {
     type: Boolean,
-    default: false
+    default: false,
+    // required:true
   },
-   Plan: {
-    type: Number
+   plan: {
+    type: Boolean,
+    default:false,
+    // required:true
   }
 
 

@@ -18,7 +18,7 @@ class UserData {
                 mobile: mobile,
                 password: password,
                 token: token,
-                isVerified: false
+                isVerified: false,
             }
         );
 

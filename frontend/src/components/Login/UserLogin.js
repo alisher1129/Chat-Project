@@ -2,7 +2,7 @@ import { useFormik } from 'formik'
 import React from 'react'
 import { signUpSchemas } from '../schemas/LoginYup';
 import axios from "axios";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -26,9 +26,14 @@ function UserLogin() {
 
       }).then((res) => {
         console.log("Backend Connected");
+        console.log(res);
+        localStorage.setItem('token', res.data.token);
         navigate('/payment')
-      
-      }).catch((err) => console.log("Not Connected", err))
+
+      }).catch((err) => { 
+        console.log("Not Connected", err) 
+      navigate('/login')
+      })
       action.resetForm();
     },
 
