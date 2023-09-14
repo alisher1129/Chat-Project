@@ -30,19 +30,19 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     // default: false
   },
-  userId:{
-  type:String
-  },
-  payment: {
-    type: Boolean,
-    default: false,
-    // required:true
-  },
-   plan: {
-    type: Boolean,
-    default:false,
-    // required:true
-  }
+  // userId:{
+  // type:String
+  // },
+  // payment: {
+  //   type: Boolean,
+  //   default: false,
+  //   // required:true
+  // },
+  //  plan: {
+  //   type: Boolean,
+  //   default:false,
+  //   // required:true
+  // }
 
 
   // ...

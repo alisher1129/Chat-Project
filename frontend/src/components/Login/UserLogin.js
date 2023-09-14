@@ -23,15 +23,22 @@ function UserLogin() {
       axios.post("http://localhost:4000/login", {
         email: values.email,
         password: values.password,
-
       }).then((res) => {
-        console.log("Backend Connected");
+        
+        console.log("Login SuccessFully!");
         console.log(res);
         localStorage.setItem('token', res.data.token);
-        navigate('/payment')
+        if(res.data.paymentStatus){
+          console.log(res.data.user.username)
+          navigate('/profile')
+        
+        }
+        else{
+          navigate('/payment')
+        }
 
       }).catch((err) => { 
-        console.log("Not Connected", err) 
+        console.log("Please login Again !", err) 
       navigate('/login')
       })
       action.resetForm();

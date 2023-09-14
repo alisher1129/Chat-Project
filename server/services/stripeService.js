@@ -1,4 +1,5 @@
 const userModel = require("../models/userModel")
+const MyPayment = require("../models/StripeModel/stripeModel")
 const stripe = require("stripe")("sk_test_51NkkwXAXUbI3cuY9sR8i98U3S3jaRucU6KMmWQWJjRnpkq7rMNUIWixeFgiRNU1ZNBcwrDH3lbfEWyBixIm34ATE00IyNMDnXP")
 const jwt = require('jsonwebtoken');
 
@@ -22,16 +23,17 @@ class stripeData {
             })
             const token = req.headers['x-access-token'];
             const val = jwt.decode(token);
-            // const checkData = await userModel.findOne(req.user.email) //
+            console.log(val.id)
+            
             console.log("val", val);
-            const paymentDone = userModel({
+            const paymentDone = MyPayment({
                 userId: val.id,
                 payment: true,
                 plan: true,
             })
 
-            // res.send("payment successfully send ")
-            await checkData.save().then(() => 
+            res.status(200).json("payment successfully send ")
+            await paymentDone.save().then(() => 
             console.log("Payment  Done" ));
 
             // res.json({

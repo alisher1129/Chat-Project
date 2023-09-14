@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import React from 'react'
 import { signUpSchemas } from '../schemas/SignUpYup';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 // import UserLogin from '../Login/UserLogin';
 
 
@@ -13,6 +14,7 @@ const initialValues = {
     mobile: "",
 }
 function Registration() {
+    const navigate = useNavigate();
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: initialValues,
         validationSchema: signUpSchemas,
@@ -23,7 +25,10 @@ function Registration() {
                 mobile: values.mobile,
                 password: values.password,
 
-            }).then((res) => console.log("Backend Connected")).catch((err) => console.log("Not Connected", err))
+            }).then((res) => {
+                navigate('/login')
+                console.log("Registered Successfully,Now You Have to Login First!")
+            }).catch((err) => { console.log("Not Registered, Please Registered  Again" , err) })
 
             // console.log("Value of form ", values);
             action.resetForm();
@@ -104,7 +109,7 @@ function Registration() {
                     if Already Have an Account ?
 
 
-                    
+
                     <br />
                     <button type=''>Registration</button>
                 </div>
