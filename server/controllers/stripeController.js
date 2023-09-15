@@ -10,7 +10,7 @@ class stripeController {
             // res.json(result);
             console.log("Payment done done")
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             console.log("Error UnPaid")
         }
     }

@@ -13,7 +13,7 @@ class LoginService {
 
             if (user.password === req.body.password) {
                 var paymentStatus = false;
-                const token = jwt.sign({ id: user._id }, 'secret123',
+                const token = jwt.sign({ id: user._id }, 'secret_123',
                     {
                         expiresIn: 3600
                     })
@@ -21,16 +21,18 @@ class LoginService {
                 const checkUser = await MyPayment.findOne({
                     userId: user._id
                 })
-                if (checkUser.userId) {
-                    paymentStatus = true;
-                    console.log("Paid User")
+                if (checkUser) {
+                    if (checkUser.userId) {
+                        paymentStatus = true;
+                        console.log("Paid User")
 
-                }
-                else
-                {
-                    console.log("unpaid User")
+                    }
+                    else {
+                        console.log("unpaid User")
 
+                    }
                 }
+
                 return { user, token: token, paymentStatus: paymentStatus };
             }
             else {

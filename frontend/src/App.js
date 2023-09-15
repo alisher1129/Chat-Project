@@ -4,29 +4,32 @@ import UserLogin from './components/Login/UserLogin';
 import HomePage from './components/Home/HomePage';
 import StripePage from './components/Stripe/StripePage';
 import UserProfile from "./components/User Profile/UserProfile"
+import { UserContext } from './components/Context/UserContext';
+import { useState } from 'react';
 
 function App() {
+  const [ currentUser, setCurrentUser] = useState(null);
 
 
-  
 
   return (
 
 
 
     <>
-      
 
+      <UserContext.Provider value={{currentUser, setCurrentUser} }>
+        <Routes>
 
-      <Routes>
-     
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<UserLogin />} />
-        <Route path="/signup" element={<Registration />} />
-        <Route path="/payment" element={<StripePage />} />
-        <Route path="/profile" element={<UserProfile/>} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<UserLogin />} />
+          <Route path="/signup" element={<Registration />} />
+          <Route path="/payment" element={<StripePage />} />
+          <Route path="/profile" element={<UserProfile />} />
+          
 
-      </Routes>
+        </Routes>
+      </UserContext.Provider>
 
     </>
   );

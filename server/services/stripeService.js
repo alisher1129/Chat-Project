@@ -24,7 +24,7 @@ class stripeData {
             const token = req.headers['x-access-token'];
             const val = jwt.decode(token);
             console.log(val.id)
-            
+
             console.log("val", val);
             const paymentDone = MyPayment({
                 userId: val.id,
@@ -32,25 +32,17 @@ class stripeData {
                 plan: true,
             })
 
-            res.status(200).json("payment successfully send ")
-            await paymentDone.save().then(() => 
-            console.log("Payment  Done" ));
 
-            // res.json({
-            //     message: "Payment was successful",
-            //     success: true
-            // })
-
-
-
-
-
-        } catch (error) {
-            console.log("Error", error)
-            // res.json({
-            //     message: "Payment Failed",
-            //     success: false
-            // })
+            await paymentDone.save().then((res) => {
+                console.log("Payment Done")
+                res.status(200).json("Payment successfully sent")
+            }).catch((err) => {
+                console.log("not save Error saving payment data:", err);
+                res.status(500).json("Internal server error");
+            })
+        } catch (err) {
+            console.log("Error saving payment data:", err);
+            res.status(500).json("Internal server error");
         }
     }
 }

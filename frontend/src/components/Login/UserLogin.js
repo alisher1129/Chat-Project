@@ -1,8 +1,10 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { createContext, useContext } from 'react'
 import { signUpSchemas } from '../schemas/LoginYup';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
+import UserProfile from '../User Profile/UserProfile';
+import { UserContext } from '../Context/UserContext';
 
 
 
@@ -14,7 +16,8 @@ const initialValues = {
 
 
 function UserLogin() {
-
+  // const MyContext = createContext();
+  const {currentUser , setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
@@ -24,22 +27,24 @@ function UserLogin() {
         email: values.email,
         password: values.password,
       }).then((res) => {
-        
+
         console.log("Login SuccessFully!");
         console.log(res);
         localStorage.setItem('token', res.data.token);
-        if(res.data.paymentStatus){
-          console.log(res.data.user.username)
-          navigate('/profile')
-        
+        if (res.data.paymentStatus) {
+          console.log(res.data.user.username);
+          setCurrentUser(res.data.user.username);
+          
+              navigate('/profile')
+
         }
-        else{
+        else {
           navigate('/payment')
         }
 
-      }).catch((err) => { 
-        console.log("Please login Again !", err) 
-      navigate('/login')
+      }).catch((err) => {
+        console.log("Please login Again !", err)
+        navigate('/login')
       })
       action.resetForm();
     },
