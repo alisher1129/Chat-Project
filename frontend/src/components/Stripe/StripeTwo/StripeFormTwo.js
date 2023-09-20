@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { CardNumberElement, CardCvcElement, CardExpiryElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 
@@ -52,11 +52,9 @@ function PaymentFormTwo() {
                 if (response.data.success) {
                     console.log("Successful Payment")
                     setSuccess(true)
-                   
-                }
-                navigate('/user');
-                
+                    navigate('/profile')
 
+                }
             }
             catch (error) {
                 console.log("Error", error)

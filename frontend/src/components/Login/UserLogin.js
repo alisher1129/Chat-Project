@@ -3,8 +3,9 @@ import React, { createContext, useContext } from 'react'
 import { signUpSchemas } from '../schemas/LoginYup';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
-import UserProfile from '../User Profile/UserProfile';
+// import UserProfile from '../User Profile/UserProfile';
 import { UserContext } from '../Context/UserContext';
+import { PostContext } from '../Context/PostContext';
 
 
 
@@ -13,11 +14,10 @@ const initialValues = {
   password: "",
 
 }
-
-
 function UserLogin() {
   // const MyContext = createContext();
-  const {currentUser , setCurrentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { postId, setPostId } = useContext(PostContext)
   const navigate = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
@@ -34,8 +34,11 @@ function UserLogin() {
         if (res.data.paymentStatus) {
           console.log(res.data.user.username);
           setCurrentUser(res.data.user.username);
-          
-              navigate('/profile')
+          console.log(res.data.user._id);
+          setPostId(res.data.user._id);
+
+
+          navigate('/profile')
 
         }
         else {

@@ -1,7 +1,7 @@
 const User = require('../models/userModel');
 const MyPayment = require("../models/StripeModel/stripeModel")
+const postModel = require("../models/PostModel/postModel");
 const jwt = require('jsonwebtoken');
-
 
 
 class LoginService {
@@ -10,6 +10,7 @@ class LoginService {
             const user = await User.findOne({
                 email: req.body.email
             });
+            
 
             if (user.password === req.body.password) {
                 var paymentStatus = false;
@@ -21,6 +22,7 @@ class LoginService {
                 const checkUser = await MyPayment.findOne({
                     userId: user._id
                 })
+
                 if (checkUser) {
                     if (checkUser.userId) {
                         paymentStatus = true;
@@ -33,7 +35,7 @@ class LoginService {
                     }
                 }
 
-                return { user, token: token, paymentStatus: paymentStatus };
+                return { user ,token: token, paymentStatus: paymentStatus };
             }
             else {
                 // res.send("Welcome User Profile")
