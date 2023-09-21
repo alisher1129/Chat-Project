@@ -16,7 +16,8 @@ route.get("/verify", userController.verifyEmail)
 route.post("/login", loginController.LoginUser)
 route.post("/payment", stripeController.makePayment)
 route.post("/createPost",postController.postUser)
-route.get("/GetUserPost",postController.getUserPost)
+route.get("/getuserpost/:userId",postController.getUserPost)
+route.get("/getuser/:userId", userController.getUserData);
 
 //Post Routes
 

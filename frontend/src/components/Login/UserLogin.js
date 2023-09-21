@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom'
 // import UserProfile from '../User Profile/UserProfile';
 import { UserContext } from '../Context/UserContext';
 import { PostContext } from '../Context/PostContext';
+// import { useJwt } from "react-jwt"
+import { decodeToken } from "react-jwt";
 
 
 
@@ -15,9 +17,9 @@ const initialValues = {
 
 }
 function UserLogin() {
-  // const MyContext = createContext();
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-  const { postId, setPostId } = useContext(PostContext)
+
+  // const { postId, setPostId } = useContext(PostContext)
+  // const { decodedToken, isExpired } = useJwt(token);
   const navigate = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
@@ -27,19 +29,9 @@ function UserLogin() {
         email: values.email,
         password: values.password,
       }).then((res) => {
-
-        console.log("Login SuccessFully!");
-        console.log(res);
         localStorage.setItem('token', res.data.token);
         if (res.data.paymentStatus) {
-          console.log(res.data.user.username);
-          setCurrentUser(res.data.user.username);
-          console.log(res.data.user._id);
-          setPostId(res.data.user._id);
-
-
           navigate('/profile')
-
         }
         else {
           navigate('/payment')

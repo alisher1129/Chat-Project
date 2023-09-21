@@ -7,8 +7,10 @@ class stripeController {
         try {
             console.log(req);
             const result = await StripePayment(req);
-            // res.json(result);
-            console.log("Payment done done")
+            console.log("Payment done Controller")
+            console.log(result)
+            res.status(200).json(result);
+            
         } catch (error) {
             // console.log(error);
             console.log("Error UnPaid")

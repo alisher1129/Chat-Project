@@ -8,52 +8,31 @@ import axios from 'axios';
 
 function UserProfile() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  // const { postId, setPostId } = useContext(PostContext);
   const [ postArray , setPostArray ] = useState('');
 
   useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser, setCurrentUser]);
-
-  const { postId, setPostId } = useContext(PostContext);
-  useEffect(() => {
-    console.log(postId)
-      axios.get("http://localhost:4000/GetUserPost", {
-          userId: postId
-      }).then((res) => { 
+      console.log("currentUser", currentUser);
+      axios.get(`http://localhost:4000/getuserpost/${currentUser.id}`)
+      .then((res) => { 
         console.log("All Posts",res  ) 
-
         setPostArray(res);
-        
-
-        // setPostArray((prec) => [...prev]);
+        console.log(postArray);
       }).catch((err) => { console.log(err) })
+// }
+  }, [currentUser])
 
-  }, [postId])
 
-
-  console.log(postArray);
+  // console.log(postArray);
   return (
-
-
-    <>
+     <>
       {currentUser ?
-        (<div><h3> hello {currentUser}</h3>
-        {/* {postArray.map((p) =>{
-          <div key={p.id}>
-            {<img src={p.photo} alt='arraypicture'></img>}
-          </div>
-        })} */}
-       <div> <img  src={postArray.photo} alt='picture'></img></div>
-
-
-
+        (<div><h3> hello {currentUser.username}</h3>
         </div>
         ) : (<div></div>)
       }
       <Link to="/create">Create Post </Link>
-
     </>
-
   )
 }
 

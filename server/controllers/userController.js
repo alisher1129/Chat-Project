@@ -1,5 +1,5 @@
 const { model } = require("mongoose");
-const { CreateUser, VerifyEmail } = require("../services/userService");
+const { CreateUser, VerifyEmail ,getUser } = require("../services/userService");
 
 class userController {
     async createUsers(req, res) {
@@ -16,6 +16,17 @@ class userController {
         try {
             const Email = await VerifyEmail(req)
             res.send("Thanks For Verification")
+        }
+        catch
+        {
+            (error) => console.log(error)
+        }
+    }
+    async getUserData(req, res) {
+        try {
+            const result = await getUser(req)
+            res.json(result);
+            
         }
         catch
         {

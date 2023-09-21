@@ -1,7 +1,6 @@
 const User = require("../models/userModel")
 const crypto = require("crypto");
 const sgMail = require("@sendgrid/mail");
-const { error } = require("console");
 require("dotenv").config()
 const apikey = (process.env.API_KEY)
 sgMail.setApiKey(apikey);
@@ -59,8 +58,8 @@ class UserData {
     async VerifyEmail(req, res) {
 
         try {
-console.log(req.query.token)
-            const Myuser = await User.findOne({ token:req.query.token });
+            console.log(req.query.token)
+            const Myuser = await User.findOne({ token: req.query.token });
             if (!Myuser) {
                 req.flash("Error , Token is not valid")
                 return redirect("/");
@@ -82,10 +81,22 @@ console.log(req.query.token)
 
         }
 
+
     }
+    async getUser(req, res) {
+        try {
+            const user = await User.findOne({
+                _id: req.params.userId
+            });
+            console.log(user);
 
+            return user;
 
-
+        }
+    catch (error) {
+            console.log(error);
+        }
+    }
 
 
 }

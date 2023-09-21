@@ -1,16 +1,16 @@
 
-import React, { useContext, useEffect } from 'react'
-import { PostContext } from "../Context/PostContext";
-import axios from 'axios';
+// import React, { useContext, useEffect } from 'react'
+// import { PostContext } from "../Context/PostContext";
+// import axios from 'axios';
 
 
 
-function GetPost() {
+// function GetPost() {
    
 
-    return (
-        <div>GetPost</div>
-    )
-}
+//     return (
+//         <div>GetPost</div>
+//     )
+// }
 
-export default GetPost
+// export default GetPost

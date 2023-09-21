@@ -2,8 +2,9 @@ import React from 'react'
 import { useState } from 'react'
 import { CardNumberElement, CardCvcElement, CardExpiryElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import { useNavigate }  from 'react-router-dom';
 
-import { useNavigate } from 'react-router-dom';
+
 const CARD_OPTIONS = {
     iconStyle: "solid",
     style: {
@@ -48,18 +49,20 @@ function PaymentForm() {
                         "x-access-token": localStorage.getItem("token")
                     }
                 });
-
-                if (response.data.success) {
+         console.log(response)
+         console.log(response.data)
+         
+                if (response.data.payment === true) {
                     console.log("Successful Payment")
                     setSuccess(true)
                     navigate('/profile')
                 }
 
             } catch (error) {
-                console.log("Error", error)
+                console.log("Error response isnt here", error)
             }
         } else {
-            console.log(error.message)
+            console.log("show error message")  
         }
 
     }

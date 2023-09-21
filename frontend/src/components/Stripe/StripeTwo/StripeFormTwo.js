@@ -48,6 +48,8 @@ function PaymentFormTwo() {
                         "x-access-token": localStorage.getItem("token")
                     }
                 })
+                console.log(response)
+         console.log(response.data.payment === true)
 
                 if (response.data.success) {
                     console.log("Successful Payment")

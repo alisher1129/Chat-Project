@@ -25,7 +25,7 @@ class stripeData {
             const val = jwt.decode(token);
             console.log(val.id)
 
-            console.log("val", val);
+            // console.log("val", val);
             const paymentDone = MyPayment({
                 userId: val.id,
                 payment: true,
@@ -33,16 +33,11 @@ class stripeData {
             })
 
 
-            await paymentDone.save().then((res) => {
-                console.log("Payment Done")
-                res.status(200).json("Payment successfully sent")
-            }).catch((err) => {
-                console.log("not save Error saving payment data:", err);
-                res.status(500).json("Internal server error");
-            })
+            await paymentDone.save()
+            return paymentDone
         } catch (err) {
             console.log("Error saving payment data:", err);
-            res.status(500).json("Internal server error");
+
         }
     }
 }

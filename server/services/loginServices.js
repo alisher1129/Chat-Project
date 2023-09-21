@@ -10,11 +10,14 @@ class LoginService {
             const user = await User.findOne({
                 email: req.body.email
             });
-            
+
 
             if (user.password === req.body.password) {
                 var paymentStatus = false;
-                const token = jwt.sign({ id: user._id }, 'secret_123',
+                const token = jwt.sign({
+                    id: user._id,
+                    username: user.username,
+                }, 'secret_123',
                     {
                         expiresIn: 3600
                     })
@@ -23,7 +26,7 @@ class LoginService {
                     userId: user._id
                 })
 
-                if (checkUser) {
+                if (checkUser.payment === true) {
                     if (checkUser.userId) {
                         paymentStatus = true;
                         console.log("Paid User")
@@ -35,7 +38,7 @@ class LoginService {
                     }
                 }
 
-                return { user ,token: token, paymentStatus: paymentStatus };
+                return { user, token: token, paymentStatus: paymentStatus };
             }
             else {
                 // res.send("Welcome User Profile")

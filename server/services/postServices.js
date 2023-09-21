@@ -32,10 +32,12 @@ class postData {
     }
 
     async getPost(req, res) {
-        let { userId } = req.body;
-        console.log('service id',userId)
+        // let { userId } = req.body;
+        // console.log('service id',userId)
         try {
-            const CheckPost = await postModel.find({ userId: userId })
+            const CheckPost = await postModel.find({ 
+                userId: req.params.userId, 
+            })
             return CheckPost;
         } catch (err) {
             console.log("User not found in DB", err)
