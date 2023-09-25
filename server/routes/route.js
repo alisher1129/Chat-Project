@@ -18,6 +18,9 @@ route.post("/payment", stripeController.makePayment)
 route.post("/createPost",postController.postUser)
 route.get("/getuserpost/:userId",postController.getUserPost)
 route.get("/getuser/:userId", userController.getUserData);
+route.get("/getalluser", postController.getAllUserPost);
+
+
 
 //Post Routes
 

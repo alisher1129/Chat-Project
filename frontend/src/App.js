@@ -7,6 +7,7 @@ import UserProfile from "./components/User Profile/UserProfile"
 import CreatePost from './components/Create Post/CreatePost';
 import { UserContext } from './components/Context/UserContext';
 import { PostContext } from './components/Context/PostContext';
+import UserHomePage from './components/UserHomePage/UserHomePage';
 // import GetPost from './components/View/GetPost';
 import { useContext, useEffect, useState } from 'react';
 import { decodeToken } from "react-jwt";
@@ -22,25 +23,27 @@ function App() {
 
     const token = localStorage.getItem('token')
     if (token !== null) {
-      // console.log("hello")
+      console.log("hello")
       const myDecodedToken = decodeToken(token);
-      // console.log("myDecodedToken", myDecodedToken);
+      console.log("myDecodedToken", myDecodedToken);
+      // console.log(myDecodedToken.id)
       const func = async () => {      
-     const result = await axios.get(`http://localhost:4000/getuser/${myDecodedToken.id}`).then((res)=>
+     await axios.get(`http://localhost:4000/getuser/${myDecodedToken.id}`).then((res)=>
      
      
      {
       console.log(res)
     setCurrentUser(res)
     console.log(currentUser)
+    if (res.data !== null){
+        console.log("......")
+        navigate('/profile')
+       }
     }).catch((error)=>console.log(error));
     //  console.log(result)
     //  setCurrentUser(result)
-     
-     if (result.data !== null){
-      console.log("......")
-      navigate('/profile')
-     }
+  
+    // 
      }
      func();
     }
@@ -61,6 +64,7 @@ function App() {
             <Route path="/payment" element={<StripePage />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/create" element={<CreatePost />} />
+            <Route path="/userhome" element={<UserHomePage/>} />
             {/* <Route path="/userpost" element={<GetPost />} /> */}
 
           </Routes>

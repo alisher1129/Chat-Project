@@ -8,30 +8,49 @@ import axios from 'axios';
 
 function UserProfile() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  // const { postId, setPostId } = useContext(PostContext);
-  const [ postArray , setPostArray ] = useState('');
-
+  const { postId, setPostId } = useContext(PostContext);
+  const [postArray, setPostArray] = useState([]);
+  console.log(currentUser);
+  console.log("check user")
   useEffect(() => {
+    if (currentUser) {
       console.log("currentUser", currentUser);
-      axios.get(`http://localhost:4000/getuserpost/${currentUser.id}`)
-      .then((res) => { 
-        console.log("All Posts",res  ) 
-        setPostArray(res);
-        console.log(postArray);
-      }).catch((err) => { console.log(err) })
-// }
+      console.log(currentUser.data._id);
+      axios.get(`http://localhost:4000/getuserpost/${currentUser.data._id}`)
+        .then((res) => {
+          console.log("All Posts", res.data)
+          setPostArray(res.data);
+          console.log(postArray);
+        }).catch((err) => { console.log(err) })
+    }
   }, [currentUser])
-
+  console.log("currentUser")
+  console.log(currentUser);
+  console.log(postArray)
 
   // console.log(postArray);
   return (
-     <>
+    <>
       {currentUser ?
-        (<div><h3> hello {currentUser.username}</h3>
+        (<div><h2> {currentUser.data.username}</h2><div>
+          <div > <h3>0</h3> <button>followers</button> </div>
+          <div> <h3>0</h3><button>following</button> </div></div>
+          <Link to="/create">Create Post </Link>
+          <Link to="/userhome">User Home Page </Link>
+
+          <hr></hr>
+          <div>
+            {postArray.map((post) => (
+              <img key={post._id} src={post.photo} alt="Post" />
+            ))}
+          </div>
+
+
         </div>
+
         ) : (<div></div>)
       }
-      <Link to="/create">Create Post </Link>
+
     </>
   )
 }

@@ -44,7 +44,16 @@ class postData {
 
         }
     }
+    async getAllPost(req, res) {
+        
+        try {
+            const allPost = await postModel.find()
+            return allPost;
+        } catch (err) {
+            console.log("Posts not found in DB", err)
 
+        }
+    }
 
 }
 
