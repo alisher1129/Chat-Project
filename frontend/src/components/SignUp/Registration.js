@@ -5,6 +5,8 @@ import { signUpSchemas } from '../schemas/SignUpYup';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 // import UserLogin from '../Login/UserLogin';
+import Button from 'react-bootstrap/Button';
+
 
 
 const initialValues = {
@@ -37,6 +39,9 @@ function Registration() {
     });
     return (
         <>
+        <div className='login-container'>
+
+        <div><h1>Sign Up</h1></div>
             <form onSubmit={handleSubmit} >
                 <div>
                     <label>Username</label>
@@ -60,7 +65,7 @@ function Registration() {
                         autoComplete='off'
                         name='email'
                         id='email'
-                        placeholder='Email'
+                        placeholder='name@example.com'
                         value={values.email}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -111,9 +116,13 @@ function Registration() {
 
 
                     <br />
-                    <button type=''>Registration</button>
+                    <Button className="custom-button " type='' variant="primary" size='lg'>Registration</Button>
+
                 </div>
             </form>
+
+        </div>
+        
 
         </>
     )

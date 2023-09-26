@@ -2,11 +2,17 @@ import React, { useState } from 'react'
 import { useContext, useEffect } from 'react'
 import { UserContext } from '../Context/UserContext';
 import { PostContext } from '../Context/PostContext';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+
+
 
 
 function UserProfile() {
+  const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const { postId, setPostId } = useContext(PostContext);
   const [postArray, setPostArray] = useState([]);
@@ -28,29 +34,58 @@ function UserProfile() {
   console.log(currentUser);
   console.log(postArray)
 
-  // console.log(postArray);
+
+
+  function logout() {
+
+    const token = localStorage.getItem('token')
+    // Remove the token from local storage
+    localStorage.removeItem('token');
+    console.log("user logged out ")
+    navigate('/login')
+
+
+  }
+
+
+
+
   return (
     <>
-      {currentUser ?
+    <div>{currentUser ?
         (<div><h2> {currentUser.data.username}</h2><div>
-          <div > <h3>0</h3> <button>followers</button> </div>
-          <div> <h3>0</h3><button>following</button> </div></div>
+          <div ><div  > <h4>0</h4> <h4>Followers</h4> </div>
+          <div > <h4>0</h4><h4>Following</h4></div></div></div>
+          
+         
+          <div className='profile-btn' ><Button variant="primary">Follow</Button>
+            <Button variant="primary">Message</Button>
+          </div>
+
+
+
           <Link to="/create">Create Post </Link>
           <Link to="/userhome">User Home Page </Link>
+          <button onClick={logout}>Logout</button>
+
 
           <hr></hr>
-          <div>
+          <div className='user-profile'>
             {postArray.map((post) => (
-              <img key={post._id} src={post.photo} alt="Post" />
+              < Card style={{ width: '25rem' }}>
+                <Card.Img variant="top" key={post._id} src={post.photo} alt="Post" />
+              </Card>
             ))}
           </div>
 
 
         </div>
+        
 
         ) : (<div></div>)
       }
-
+</div>
+      
     </>
   )
 }

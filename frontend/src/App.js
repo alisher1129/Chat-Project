@@ -8,11 +8,12 @@ import CreatePost from './components/Create Post/CreatePost';
 import { UserContext } from './components/Context/UserContext';
 import { PostContext } from './components/Context/PostContext';
 import UserHomePage from './components/UserHomePage/UserHomePage';
+import SideBar from './components/SideBar/SideBar';
 // import GetPost from './components/View/GetPost';
 import { useContext, useEffect, useState } from 'react';
 import { decodeToken } from "react-jwt";
 import axios from 'axios';
-
+import './Style.css'
 
 
 function App() {
@@ -27,27 +28,27 @@ function App() {
       const myDecodedToken = decodeToken(token);
       console.log("myDecodedToken", myDecodedToken);
       // console.log(myDecodedToken.id)
-      const func = async () => {      
-     await axios.get(`http://localhost:4000/getuser/${myDecodedToken.id}`).then((res)=>
-     
-     
-     {
-      console.log(res)
-    setCurrentUser(res)
-    console.log(currentUser)
-    if (res.data !== null){
-        console.log("......")
-        navigate('/profile')
-       }
-    }).catch((error)=>console.log(error));
-    //  console.log(result)
-    //  setCurrentUser(result)
-  
-    // 
-     }
-     func();
+      const func = async () => {
+        await axios.get(`http://localhost:4000/getuser/${myDecodedToken.id}`).then((res) => {
+          console.log(res)
+          setCurrentUser(res)
+          console.log(currentUser)
+          if (res.data !== null) {
+            console.log("......")
+            navigate('/profile')
+          }
+        }).catch((error) => console.log(error));
+        //  console.log(result)
+        //  setCurrentUser(result)
+
+        // 
+      }
+      func();
     }
   }, [])
+
+
+
 
 
 
@@ -56,18 +57,24 @@ function App() {
     <>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <PostContext.Provider value={{ postId, setPostId }}>
-          <Routes>
+          <SideBar>
 
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<UserLogin />} />
-            <Route path="/signup" element={<Registration />} />
-            <Route path="/payment" element={<StripePage />} />
-            <Route path="/profile" element={<UserProfile />} />
-            <Route path="/create" element={<CreatePost />} />
-            <Route path="/userhome" element={<UserHomePage/>} />
-            {/* <Route path="/userpost" element={<GetPost />} /> */}
 
-          </Routes>
+            <Routes>
+
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<UserLogin />} />
+              <Route path="/signup" element={<Registration />} />
+              <Route path="/payment" element={<StripePage />} />
+              <Route path="/profile" element={<UserProfile />} />
+              <Route path="/create" element={<CreatePost />} />
+              <Route path="/userhome" element={<UserHomePage />} />
+              <Route path="/navbar" element={<SideBar />} />
+
+              {/* <Route path="/userpost" element={<GetPost />} /> */}
+            </Routes>
+          </SideBar>
+
         </PostContext.Provider>
       </UserContext.Provider>
 

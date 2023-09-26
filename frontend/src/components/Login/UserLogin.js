@@ -8,6 +8,9 @@ import { UserContext } from '../Context/UserContext';
 import { PostContext } from '../Context/PostContext';
 // import { useJwt } from "react-jwt"
 import { decodeToken } from "react-jwt";
+import Button from 'react-bootstrap/Button';
+
+
 
 
 
@@ -47,47 +50,53 @@ function UserLogin() {
   });
   return (
     <>
-      <form onSubmit={handleSubmit} >
+      <div className='login-container'> 
+        <div><h1>Login</h1></div>
+        <form onSubmit={handleSubmit} >
 
 
-        <div>
-          <label>Email</label>
-          <br />
-          <input type='email'
-            autoComplete='off'
-            name='email'
-            id='email'
-            placeholder='Email'
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
+          <div>
+            <label>Email Address</label>
+            <br />
+            <input type='email'
+              autoComplete='off'
+              name='email'
+              id='email'
+              placeholder='name@example.com'
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
 
-          />
-          {errors.email && touched.email ? <p>{errors.email}</p> : null}
+            />
+            {errors.email && touched.email ? <p>{errors.email}</p> : null}
 
+          </div>
+
+          <div>
+            <label>Password</label>
+            <br />
+            <input type='password'
+              autoComplete='off'
+              name='password'
+              id='password'
+              placeholder='Password'
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.password && touched.password ? <p>{errors.password}</p> : null}
+
+          </div>
+
+          <div>
+            <br />
+            <Button className="custom-button " type='submit' variant="primary" size='lg'>Login</Button>
+
+            
+          </div>
+        </form>
         </div>
 
-        <div>
-          <label>Password</label>
-          <br />
-          <input type='password'
-            autoComplete='off'
-            name='password'
-            id='password'
-            placeholder='Password'
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          {errors.password && touched.password ? <p>{errors.password}</p> : null}
-
-        </div>
-
-        <div>
-          <br />
-          <button type='submit'>Login</button>
-        </div>
-      </form>
 
     </>
   )

@@ -3,27 +3,29 @@ import { useState } from 'react'
 import { CardNumberElement, CardCvcElement, CardExpiryElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useNavigate }  from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 
-const CARD_OPTIONS = {
-    iconStyle: "solid",
-    style: {
-        base: {
-            iconColor: "#c4f0ff",
-            color: "black",
-            fontWeight: 500,
-            fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-            fontSize: "16px",
-            fontSmoothing: "antialiased",
-            ":-webkit-autofill": { color: "black" },
-            "::placeholder": { color: "black" }
-        },
-        invalid: {
-            iconColor: "#ffc7ee",
-            color: "black"
-        }
-    }
-}
+
+// const CARD_OPTIONS = {
+//     iconStyle: "solid",
+//     style: {
+//         base: {
+//             iconColor: "#c4f0ff",
+//             color: "black",
+//             fontWeight: 500,
+//             fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
+//             fontSize: "16px",
+//             fontSmoothing: "antialiased",
+//             ":-webkit-autofill": { color: "black" },
+//             "::placeholder": { color: "black" }
+//         },
+//         invalid: {
+//             iconColor: "#ffc7ee",
+//             color: "black"
+//         }
+//     }
+// }
 
 function PaymentForm() {
     const [success, setSuccess] = useState(false)
@@ -72,20 +74,21 @@ function PaymentForm() {
                 <form onSubmit={handleSubmit}  >
                     <fieldset className='FormGroup'>
                         <div className="FormRow">
-                            <CardNumberElement options={CARD_OPTIONS} />
+                            <CardNumberElement />
                         </div>
                     </fieldset>
                     <fieldset className='FormGroup'>
                         <div className="FormRow">
-                            <CardExpiryElement options={CARD_OPTIONS} />
+                            <CardExpiryElement />
                         </div>
                     </fieldset>
                     <fieldset className='FormGroup'>
                         <div className="FormRow">
-                            <CardCvcElement options={CARD_OPTIONS} />
+                            <CardCvcElement  />
                         </div>
                     </fieldset>
-                    <button>Pay</button>
+                    <Button className="custom-button "  variant="primary" size='lg'>Pay</Button>
+
                 </form>
                 :
                 <div className="payment-success">

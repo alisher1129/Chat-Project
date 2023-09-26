@@ -1,17 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom' 
+
+
 
 function HomePage() {
-  return (
-    <div>
 
- <Link to="/signup" >Sign Up</Link>
- <br></br>
- <br></br>
- <Link to="/login" >Login</Link>
+
+  return (
+    <div className="home-container" >
+      <Button className="custom-button " variant="primary" size='lg'><Link to="/signup" >Sign Up</Link></Button>
+      <br></br>
+      <br></br>
+      <Button className="custom-button" variant="success" size='lg' ><Link to="/login" >Login</Link></Button>
+      
+      
 
     </div>
   )
 }
 
-export default HomePage
+export default HomePage   

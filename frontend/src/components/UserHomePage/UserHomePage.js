@@ -1,52 +1,80 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useState } from 'react';
+import Card from 'react-bootstrap/Card';
+
 
 function UserHomePage() {
-    const [userPosts, setUserPosts] = useState([]);
+  const [userPosts, setUserPosts] = useState([]);
 
-useEffect(()=>{
+  useEffect(() => {
     axios.get(`http://localhost:4000/getalluser`)
-    .then((res) =>{ console.log("res",res)
-    console.log(res.data)
-    setUserPosts(res.data)
-    
+      .then((res) => {
+        console.log("res", res)
+        console.log(res.data)
+        setUserPosts(res.data)
 
-})
-    .catch((err) => console.log("err", err))
 
-},[])
+      })
+      .catch((err) => console.log("err", err))
 
-    return (
-        <> <div><h1>UserHomePage</h1></div>
-        
+  }, [])
+
+  return (
+    <> 
+    <div className='user-homepage'>
+
+
+
+
+    <div ><h1>UserHomePage</h1></div>
+      <div className='search-bar'>
+        <input
+          type="text"
+          placeholder="Search..."
+        />
+        <button >Search</button>
+      </div>
+
       <div>
         {userPosts.map((post) => (
-        <>
-        <h4>{post.title}</h4>
-        <img
-        key={post._id} // Assuming there's an _id field in your data
-        src={post.photo} // Replace with the actual image URL field in your data
-        alt={post.title} // Replace with the actual alt text field in your data
-      />
-      <div>
-          <button>Like</button>
-          <button>Comment</button>
-        </div></>  
-          
+          <>
+            < Card style={{ width: '30rem' }}>
+              <Card.Body>
+                <Card.Title>{post.title}</Card.Title>
+                <hr></hr>
+                <Card.Img variant="top" key={post._id} 
+                  src={post.photo} 
+                  alt={post.title}  />
+                
+
+              </Card.Body>
+            </Card>
+      
+            <div className='user-btn'>
+              <button>Like</button>
+              <button>Comment</button>
+            </div></>
+
         ))}
-        
-        
+
+
       </div>
-     
-      
-      
-      
-      
-      
-      </>
-       
-    )
+
+
+
+
+    </div>
+   
+
+
+
+
+
+
+    </>
+
+  )
 }
 
 export default UserHomePage

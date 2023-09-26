@@ -26,7 +26,7 @@ class LoginService {
                     userId: user._id
                 })
 
-                if (checkUser.payment === true) {
+                if (checkUser && checkUser.payment === true) {
                     if (checkUser.userId) {
                         paymentStatus = true;
                         console.log("Paid User")

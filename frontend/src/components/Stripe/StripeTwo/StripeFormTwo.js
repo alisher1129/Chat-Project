@@ -3,26 +3,28 @@ import { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import { CardNumberElement, CardCvcElement, CardExpiryElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 
-const CARD_OPTIONS = {
-    iconStyle: "solid",
-    style: {
-        base: {
-            iconColor: "#c4f0ff",
-            color: "black",
-            fontWeight: 500,
-            fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-            fontSize: "16px",
-            fontSmoothing: "antialiased",
-            ":-webkit-autofill": { color: "black" },
-            "::placeholder": { color: "black" }
-        },
-        invalid: {
-            iconColor: "#ffc7ee",
-            color: "black"
-        }
-    }
-}
+
+// const CARD_OPTIONS = {
+//     iconStyle: "solid",
+//     style: {
+//         base: {
+//             iconColor: "#c4f0ff",
+//             color: "black",
+//             fontWeight: 500,
+//             fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
+//             fontSize: "16px",
+//             fontSmoothing: "antialiased",
+//             ":-webkit-autofill": { color: "black" },
+//             "::placeholder": { color: "black" }
+//         },
+//         invalid: {
+//             iconColor: "#ffc7ee",
+//             color: "black"
+//         }
+//     }
+// }
 
 function PaymentFormTwo() {
     const navigate = useNavigate();
@@ -48,10 +50,9 @@ function PaymentFormTwo() {
                         "x-access-token": localStorage.getItem("token")
                     }
                 })
-                console.log(response)
-         console.log(response.data.payment === true)
+                console.log(response.data.payment)
 
-                if (response.data.success) {
+                if (response.data.payment) {
                     console.log("Successful Payment")
                     setSuccess(true)
                     navigate('/profile')
@@ -72,20 +73,20 @@ function PaymentFormTwo() {
                 <form onSubmit={handleSubmit}  >
                     <fieldset className='FormGroup'>
                         <div className="FormRow">
-                            <CardNumberElement options={CARD_OPTIONS} />
+                            <CardNumberElement  />
                         </div>
                     </fieldset>
                     <fieldset className='FormGroup'>
                         <div className="FormRow">
-                            <CardExpiryElement options={CARD_OPTIONS} />
+                            <CardExpiryElement />
                         </div>
                     </fieldset>
                     <fieldset className='FormGroup'>
                         <div className="FormRow">
-                            <CardCvcElement options={CARD_OPTIONS} />
+                            <CardCvcElement />
                         </div>
                     </fieldset>
-                    <button>Pay</button>
+                    <Button className="custom-button " type='submit'  variant="primary" size='lg'>Pay</Button>
                 </form>
                 :
                 <div className="payment-success">
