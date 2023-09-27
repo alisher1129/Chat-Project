@@ -97,6 +97,18 @@ class UserData {
             console.log(error);
         }
     }
+    async getAlluser(req, res) {
+        try {
+            const user = await User.find();
+            console.log(user);
+
+            return user;
+
+        }
+    catch (error) {
+            console.log(error);
+        }
+    }
 
 
 }

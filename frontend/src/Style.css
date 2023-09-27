@@ -1,124 +1,160 @@
 /* HomePage.css */
 
 .home-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Center vertically on the viewport */
-    text-align: center;
-  }
-  
-  .custom-button {
-    color: white; /* White font color */
-   text-align: center;
-    display: inline-block;
-    height: 60px;
-    width: 150px;
-    font-size: 25px;
-    border-radius: 25px;
-    cursor: pointer;
-  }
-  .custom-button a {
-    text-decoration: none; /* Remove the underline from links */
-    color: white; /* Set the font color for links within buttons */
-  }
-  
-  .login-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 85vh; /* Center vertically on the viewport */
-    text-align: center;
-  }
-  .login-container h1{
-    font-style: inherit;
-    font-size: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  /* Center vertically on the viewport */
+  text-align: center;
+}
 
-  }
+.custom-button {
+  color: white;
+  /* White font color */
+  text-align: center;
+  display: inline-block;
+  height: 60px;
+  width: 150px;
+  font-size: 25px;
+  border-radius: 25px;
+  cursor: pointer;
+}
 
-  .login-container label {
-    font-size:x-large;
+.custom-button a {
+  text-decoration: none;
+  /* Remove the underline from links */
+  color: white;
+  /* Set the font color for links within buttons */
+}
 
-  }
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+  /* Center vertically on the viewport */
+  text-align: center;
+}
+
+.login-container h1 {
+  font-style: inherit;
+  font-size: 70px;
+
+}
+
+.login-container label {
+  font-size: x-large;
+
+}
 
 
-  .login-container input {
-    height: 50px;
-    width: 400px;
-    border-radius: 15px;
+.login-container input {
+  height: 50px;
+  width: 400px;
+  border-radius: 15px;
 
 
-  }
-  .stripe-plan {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60vh; /* Center vertically on the viewport */
-    text-align: center;
-  }
-  .plan-button{
-    padding: 40px;
-  }
- .set-heading{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-   text-align: center;
-   font-size: xx-large;
- }
- .user-homepage{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 12px;
-   text-align: center;
+}
 
- }
+.stripe-plan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  /* Center vertically on the viewport */
+  text-align: center;
+}
+
+.plan-button {
+  padding: 40px;
+}
+
+.set-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  text-align: center;
+  font-size: xx-large;
+}
+
+.user-homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  text-align: center;
+
+}
 
 .search-bar input {
-height: 40px;
-width: 400px;
-margin-bottom: 10px;
+  height: 40px;
+  width: 400px;
+  margin-bottom: 10px;
 }
-.search-bar button{
-    padding: 7px;
+
+.search-bar button {
+  padding: 7px;
 }
-.user-profile{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
- }
- .user-profile h4 {
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.user-profile h4 {
   margin-left: 25px;
 
 
 
 
-  
+
 }
- .user-btn button{
+
+.user-btn button {
   height: 45px;
   width: 235px;
   color: black;
-  
-  
- }
 
- .profile-btn button{
-height: 50px;
-width: 120px;
-margin-left: 10px;
- }
- .user-followers{
+
+}
+
+.profile-btn button {
+  height: 50px;
+  width: 120px;
+  margin-left: 10px;
+}
+
+.user-followers {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 140px;
   padding: 2px;
 
- }
+}
+
+a {
+  text-decoration: none !important;
+  color: unset;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+  z-index: 10;
+  background-color: gray;
+  width: 100%;
+}
+.absolute h6{
+  margin-top: 20px;
+}

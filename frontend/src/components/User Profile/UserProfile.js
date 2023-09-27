@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useContext, useEffect } from 'react'
 import { UserContext } from '../Context/UserContext';
 import { PostContext } from '../Context/PostContext';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
@@ -12,7 +11,6 @@ import Button from 'react-bootstrap/Button';
 
 
 function UserProfile() {
-  const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const { postId, setPostId } = useContext(PostContext);
   const [postArray, setPostArray] = useState([]);
@@ -36,16 +34,6 @@ function UserProfile() {
 
 
 
-  function logout() {
-
-    const token = localStorage.getItem('token')
-    // Remove the token from local storage
-    localStorage.removeItem('token');
-    console.log("user logged out ")
-    navigate('/login')
-
-
-  }
 
 
 
@@ -64,9 +52,7 @@ function UserProfile() {
 
 
 
-          <Link to="/create">Create Post </Link>
-          <Link to="/userhome">User Home Page </Link>
-          <button onClick={logout}>Logout</button>
+        
 
 
           <hr></hr>

@@ -1,60 +1,58 @@
-import React from 'react'
-import {
-    CDBSidebar,
-    CDBSidebarContent,
-    CDBSidebarFooter,
-    CDBSidebarHeader,
-    CDBSidebarMenu,
-    CDBSidebarMenuItem,
-} from 'cdbreact';
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { useNavigate } from 'react-router-dom';
+
+
+
 function SideBar({ children }) {
-    return (<div className='d-flex'>
+  const navigate = useNavigate();
+const auth = JSON.parse(localStorage.getItem('auth'))
 
-        <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
-            <CDBSidebar textColor="#fff" backgroundColor="#333">
-                <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-                    <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
-                        Sidebar
-                    </a>
-                </CDBSidebarHeader>
-                <CDBSidebarContent className="sidebar-content">
-                    <CDBSidebarMenu>
-                        <NavLink exact to="/userhome" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="columns">Home</CDBSidebarMenuItem>
-                        </NavLink>
-                        <NavLink exact to="/profile" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="table">Profile</CDBSidebarMenuItem>
-                        </NavLink>
-                        <NavLink exact to="/profile" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="user">Profile page</CDBSidebarMenuItem>
-                        </NavLink>
-                        <NavLink exact to="/analytics" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="chart-line">Analytics</CDBSidebarMenuItem>
-                        </NavLink>
+  function logout() {
 
-                        <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="exclamation-circle">404 page</CDBSidebarMenuItem>
-                        </NavLink>
-                    </CDBSidebarMenu>
-                </CDBSidebarContent>
+    const token = localStorage.getItem('token')
+    // Remove the token from local storage
+    localStorage.removeItem('token');
+    console.log("user logged out ")
+    localStorage.setItem('auth', JSON.stringify(false))
+    navigate('/login')
 
-                <CDBSidebarFooter style={{ textAlign: 'center' }}>
-                    <div
-                        className="sidebar-btn-wrapper"
-                        style={{
-                            padding: '20px 5px',
-                        }}
-                    >
-                        Sidebar Footer
-                    </div>
-                </CDBSidebarFooter>
-            </CDBSidebar>
-        </div>
-        <mian>{children}</mian>
-    </div>
 
-    )
+  }
+
+
+
+
+  return (
+    <>
+
+      <div>
+
+        {auth ? (
+          <div>
+            <Navbar bg="light" data-bs-theme="light">
+              <Container>
+                <Navbar.Brand href="#home">ASR</Navbar.Brand>
+                <Nav className="me-auto">
+                  <NavLink className={'nav-link'} to="/userhome">Home</NavLink>
+                  <NavLink className={'nav-link'} to="/profile">Profile</NavLink>
+                  <NavLink className={'nav-link'} to="/create">Create Post</NavLink>
+                </Nav>
+                <Button onClick={logout} variant="dark">Logout</Button>
+
+              </Container>
+            </Navbar>
+            <mian>{children}</mian>
+          </div>):(<div></div>) }
+      </div>
+
+    </>
+
+  );
 }
 
 export default SideBar

@@ -14,10 +14,11 @@ import { useContext, useEffect, useState } from 'react';
 import { decodeToken } from "react-jwt";
 import axios from 'axios';
 import './Style.css'
+import SearchUser from './components/SearchUser/SearchUser';
 
 
 function App() {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(false);
   const [postId, setPostId] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
@@ -55,28 +56,35 @@ function App() {
   return (
 
     <>
+
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <PostContext.Provider value={{ postId, setPostId }}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<UserLogin />} />
+            <Route path="/signup" element={<Registration />} />
+
+          </Routes>
           <SideBar>
 
 
             <Routes>
 
-              <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<UserLogin />} />
-              <Route path="/signup" element={<Registration />} />
+
               <Route path="/payment" element={<StripePage />} />
               <Route path="/profile" element={<UserProfile />} />
               <Route path="/create" element={<CreatePost />} />
               <Route path="/userhome" element={<UserHomePage />} />
               <Route path="/navbar" element={<SideBar />} />
+              <Route path="/search/:data" element={<SearchUser />} />
 
-              {/* <Route path="/userpost" element={<GetPost />} /> */}
+
             </Routes>
           </SideBar>
 
         </PostContext.Provider>
       </UserContext.Provider>
+
 
     </>
   );

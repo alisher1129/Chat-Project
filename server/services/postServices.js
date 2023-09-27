@@ -35,8 +35,8 @@ class postData {
         // let { userId } = req.body;
         // console.log('service id',userId)
         try {
-            const CheckPost = await postModel.find({ 
-                userId: req.params.userId, 
+            const CheckPost = await postModel.find({
+                userId: req.params.userId,
             })
             return CheckPost;
         } catch (err) {
@@ -45,15 +45,35 @@ class postData {
         }
     }
     async getAllPost(req, res) {
-        
+
         try {
-            const allPost = await postModel.find()
+            const allPost = await postModel.find().populate('userId')
             return allPost;
         } catch (err) {
             console.log("Posts not found in DB", err)
 
         }
     }
+    async showUser(req, res) {
+
+        try {
+            let { username } = req.body
+            const user = await userModel.findOne({
+                username: username
+            })
+            console.log("user data", user)
+            const userProfile = await postModel.find({
+                userId: user._id
+            }).populate('userId');
+            console.log("user", userProfile)
+            console.log("userProfile", userProfile)
+            return userProfile;
+        } catch (err) {
+            console.log("user not found", err)
+
+        }
+    }
+
 
 }
 

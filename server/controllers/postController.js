@@ -1,4 +1,4 @@
-const { userPost, getPost, getAllPost} = require("../services/postServices")
+const { userPost, getPost, getAllPost,showUser} = require("../services/postServices")
 
 
 
@@ -44,6 +44,19 @@ class postController {
             console.log(user);
             
             console.log(' All Posts of User')
+            res.status(200).json(user);
+               
+    
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async showAllUser(req, res) {
+        try {
+            const user = await showUser(req);
+            console.log(user);
+            
+            console.log(' All Users')
             res.status(200).json(user);
                
     

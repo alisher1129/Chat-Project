@@ -14,13 +14,14 @@ import Button from 'react-bootstrap/Button';
 
 
 
+
+
 const initialValues = {
   email: "",
   password: "",
 
 }
 function UserLogin() {
-
   // const { postId, setPostId } = useContext(PostContext)
   // const { decodedToken, isExpired } = useJwt(token);
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ function UserLogin() {
       }).then((res) => {
         localStorage.setItem('token', res.data.token);
         if (res.data.paymentStatus) {
+          localStorage.setItem('auth',JSON.stringify(true))
           navigate('/profile')
         }
         else {
