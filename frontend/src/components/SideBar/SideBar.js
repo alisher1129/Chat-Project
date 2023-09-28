@@ -41,6 +41,8 @@ const auth = JSON.parse(localStorage.getItem('auth'))
                   <NavLink className={'nav-link'} to="/userhome">Home</NavLink>
                   <NavLink className={'nav-link'} to="/profile">Profile</NavLink>
                   <NavLink className={'nav-link'} to="/create">Create Post</NavLink>
+                  <NavLink className={'nav-link'} to="/messenger">Messenger</NavLink>
+
                 </Nav>
                 <Button onClick={logout} variant="dark">Logout</Button>
 

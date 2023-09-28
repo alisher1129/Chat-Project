@@ -8,8 +8,6 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 
-
-
 function UserProfile() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const { postId, setPostId } = useContext(PostContext);

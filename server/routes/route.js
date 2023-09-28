@@ -7,6 +7,8 @@ const userController = require("../controllers/userController")
 const loginController = require("../controllers/loginController")
 const stripeController = require("../controllers/stripeController")
 const postController = require("../controllers/postController")
+const conversationController = require("../controllers/conversationController")
+const messageController = require("../controllers/messagecontroller")
 
 
 
@@ -21,6 +23,13 @@ route.get("/getuser/:userId", userController.getUserData);
 route.get("/getalluser", postController.getAllUserPost);
 route.post("/searchuser",postController.showAllUser)
 route.get("/allusers",userController.getAlluserDat)
+
+//message routers
+route.post('/conversation', conversationController.createNewConversation);
+route.get('/conversation/:userId', conversationController.getConversations);
+route.post('/sendmessage', messageController.sendMessage);
+route.get('/getmessage/:conversationId', messageController.getMessage);
+
 
 
 

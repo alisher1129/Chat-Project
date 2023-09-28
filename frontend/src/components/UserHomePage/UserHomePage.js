@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // Import useLocation in UserHomePage component
+
 
 
 function UserHomePage() {
@@ -12,7 +14,7 @@ function UserHomePage() {
   const [searchResults, setSearchResults] = useState([]);
   const [filterData, setFilterData] = useState([])
   const [userAll, setUserAll] = useState([])
-  
+
 
 
   useEffect(() => {
@@ -32,7 +34,7 @@ function UserHomePage() {
     // Change the color to a different color (e.g., green)
     setButtonColor('lightblue');
   };
- 
+
 
   const handleSearch = async () => {
 
@@ -40,6 +42,7 @@ function UserHomePage() {
       username: username
     }).then((response) => {
       setSearchResults(response.data);
+      console.log("searchUserResult", response.data)
       console.log(response.data);
     })
       .catch((error) => {
@@ -53,7 +56,7 @@ function UserHomePage() {
 
     await axios.get(`http://localhost:4000/allusers`).then((response) => {
       setUserAll(response.data);
-      console.log(response.data);
+      console.log("UserAll", response.data);
     })
       .catch((error) => {
         console.error('Error:', error);
@@ -80,7 +83,7 @@ function UserHomePage() {
 
 
 
-  console.log(filterData, username)
+  console.log("FilterData", filterData, username)
 
   const dataToShare = 'Hello from Component UserHomePage';
   return (
@@ -102,10 +105,11 @@ function UserHomePage() {
 
           </form>
           <div className='absolute'>
-         <Link to={`/search/${dataToShare}`}> {filterData.length > 0 && filterData[0].username}</Link>  
+            {/* <Link to={`/search/${dataToShare}`}> {filterData.length > 0 && filterData[0].username}</Link>   */}
+            <Link to='/search' dataToShare={searchResults}>{filterData.length > 0 && filterData[0].username}</Link>
           </div>
         </div>
-        <Link to={`/search/${dataToShare}`}>{filterData.length > 0 && filterData[0].username}</Link>
+        {/* <Link to={`/search/${dataToShare}`}>{filterData.length > 0 && filterData[0].username}</Link> */}
 
 
 

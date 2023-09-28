@@ -15,6 +15,7 @@ import { decodeToken } from "react-jwt";
 import axios from 'axios';
 import './Style.css'
 import SearchUser from './components/SearchUser/SearchUser';
+import Messenger from './components/Messenger/Messenger';
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
         await axios.get(`http://localhost:4000/getuser/${myDecodedToken.id}`).then((res) => {
           console.log(res)
           setCurrentUser(res)
-          console.log(currentUser)
+          console.log("hmara current user",currentUser)
           if (res.data !== null) {
             console.log("......")
             navigate('/profile')
@@ -63,6 +64,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<UserLogin />} />
             <Route path="/signup" element={<Registration />} />
+          
 
           </Routes>
           <SideBar>
@@ -76,7 +78,9 @@ function App() {
               <Route path="/create" element={<CreatePost />} />
               <Route path="/userhome" element={<UserHomePage />} />
               <Route path="/navbar" element={<SideBar />} />
-              <Route path="/search/:data" element={<SearchUser />} />
+              <Route path="/search" element={<SearchUser />} />
+              <Route path="/messenger" element={<Messenger />} />
+             
 
 
             </Routes>
