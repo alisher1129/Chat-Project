@@ -6,31 +6,31 @@ function ChatOnline() {
         <> <div className="chatOnline">
             <div className="chatOnlineFriend">
                 <div className="chatOnlineImgContainer">
-                    <img className="chatOnlineImg" src='https://media.licdn.com/dms/image/D4D03AQFsy-qbPchffQ/profile-displayphoto-shrink_800_800/0/1671038455077?e=2147483647&v=beta&t=W44P_qN4Jv0CoiopgShfiR0hEuLEt8EI-p4hRSk43Mo' alt='' />
+                    <img className="chatOnlineImg" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt='' />
                     <div className="chatOnlineBadge"></div>
                 </div>
                 <span className="chatOnlineName">Ahsan</span>
             </div>
             <div className="chatOnlineFriend">
                 <div className="chatOnlineImgContainer">
-                    <img className="chatOnlineImg" src='https://media.licdn.com/dms/image/D4D03AQFsy-qbPchffQ/profile-displayphoto-shrink_800_800/0/1671038455077?e=2147483647&v=beta&t=W44P_qN4Jv0CoiopgShfiR0hEuLEt8EI-p4hRSk43Mo' alt='' />
+                    <img className="chatOnlineImg" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt='' />
                     <div className="chatOnlineBadge"></div>
                 </div>
-                <span className="chatOnlineName">Ahsan</span>
+                <span className="chatOnlineName">Jawad</span>
             </div>
             <div className="chatOnlineFriend">
                 <div className="chatOnlineImgContainer">
-                    <img className="chatOnlineImg" src='https://media.licdn.com/dms/image/D4D03AQFsy-qbPchffQ/profile-displayphoto-shrink_800_800/0/1671038455077?e=2147483647&v=beta&t=W44P_qN4Jv0CoiopgShfiR0hEuLEt8EI-p4hRSk43Mo' alt='' />
+                    <img className="chatOnlineImg" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt='' />
                     <div className="chatOnlineBadge"></div>
                 </div>
-                <span className="chatOnlineName">Ahsan</span>
+                <span className="chatOnlineName">Subhan</span>
             </div>
             <div className="chatOnlineFriend">
                 <div className="chatOnlineImgContainer">
-                    <img className="chatOnlineImg" src='https://media.licdn.com/dms/image/D4D03AQFsy-qbPchffQ/profile-displayphoto-shrink_800_800/0/1671038455077?e=2147483647&v=beta&t=W44P_qN4Jv0CoiopgShfiR0hEuLEt8EI-p4hRSk43Mo' alt='' />
+                    <img className="chatOnlineImg" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt='' />
                     <div className="chatOnlineBadge"></div>
                 </div>
-                <span className="chatOnlineName">Ahsan</span>
+                <span className="chatOnlineName">Junaid</span>
             </div>
         </div></>
 

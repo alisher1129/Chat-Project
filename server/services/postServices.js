@@ -73,7 +73,26 @@ class postData {
 
         }
     }
+    async userAllComment(req, res) {
+        let { comments } = req.body;
+        try {
+            
+            const savePost = postModel({
+                
+                comments: comments,
+               
+            })
+            await savePost.save()
+            return savePost;
+        }
 
+        catch (err) {
+            console.log("Error Comment Not Save :", err);
+            res.status(500).json("Internal server error");
+        }
+    }
+   
+   
 
 }
 

@@ -1,5 +1,5 @@
 import Registration from './components/SignUp/Registration';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import UserLogin from './components/Login/UserLogin';
 import HomePage from './components/Home/HomePage';
 import StripePage from './components/Stripe/StripePage';
@@ -18,27 +18,31 @@ import SearchUser from './components/SearchUser/SearchUser';
 import Messenger from './components/Messenger/Messenger';
 
 
+
 function App() {
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login'
+  const payPage = location.pathname ==='/payment'; 
   const [currentUser, setCurrentUser] = useState(false);
   const [postId, setPostId] = useState(null);
   const navigate = useNavigate();
+  // console.log(isLoginPage)
   useEffect(() => {
 
     const token = localStorage.getItem('token')
     if (token !== null) {
-      console.log("hello")
+
       const myDecodedToken = decodeToken(token);
-      console.log("myDecodedToken", myDecodedToken);
-      // console.log(myDecodedToken.id)
+
       const func = async () => {
         await axios.get(`http://localhost:4000/getuser/${myDecodedToken.id}`).then((res) => {
-          console.log(res)
+
           setCurrentUser(res)
-          console.log("hmara current user",currentUser)
-          if (res.data !== null) {
-            console.log("......")
-            navigate('/profile')
-          }
+
+          // if (res.data !== null) {
+
+          //   navigate('/profile')
+          // }
         }).catch((error) => console.log(error));
         //  console.log(result)
         //  setCurrentUser(result)
@@ -60,31 +64,31 @@ function App() {
 
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <PostContext.Provider value={{ postId, setPostId }}>
+          {isLoginPage || payPage ? null : <SideBar />}
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            {/* <Route path="/" element={<HomePage />} /> */}
             <Route path="/login" element={<UserLogin />} />
             <Route path="/signup" element={<Registration />} />
-          
+            <Route path="/payment" element={<StripePage />} />
 
+
+            {/* </Routes> */}
+
+            {/* <SideBar> */}
+
+
+            {/* <Routes> */}
+
+
+
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/create" element={<CreatePost />} />
+            <Route path="/userhome" element={<UserHomePage />} />
+            <Route path="/navbar" element={<SideBar />} />
+            <Route path="/search/:username" element={<SearchUser />} />
+            <Route path="/messenger" element={<Messenger />} />
           </Routes>
-          <SideBar>
-
-
-            <Routes>
-
-
-              <Route path="/payment" element={<StripePage />} />
-              <Route path="/profile" element={<UserProfile />} />
-              <Route path="/create" element={<CreatePost />} />
-              <Route path="/userhome" element={<UserHomePage />} />
-              <Route path="/navbar" element={<SideBar />} />
-              <Route path="/search" element={<SearchUser />} />
-              <Route path="/messenger" element={<Messenger />} />
-             
-
-
-            </Routes>
-          </SideBar>
+          {/* </SideBar> */}
 
         </PostContext.Provider>
       </UserContext.Provider>

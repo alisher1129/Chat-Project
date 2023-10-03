@@ -1,12 +1,12 @@
 import React from 'react'
-import {format} from "timeago.js"
+import { format } from "timeago.js"
 import "./Message.css"
 
 function Message({message,own}) {
     return (
 
         <>
-            <div className={own ? "message own": "message"}>
+            <div className={own ? "message own" : "message"}>
 
                 <div className="messageTop">
 

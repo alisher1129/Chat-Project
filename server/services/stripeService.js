@@ -26,15 +26,18 @@ class stripeData {
             console.log(val.id)
 
             // console.log("val", val);
-            const paymentDone = MyPayment({
-                userId: val.id,
-                payment: true,
-                plan: true,
-            })
+            const checkUser = MyPayment.findOneAndUpdate({ userId: val.id }, { $set: { payment: true } })
+            // checkUser.payment == true;
+
+            // const paymentDone = MyPayment({
+            //     userId: val.id,
+            //     payment: true,
+            //     plan: true,
+            // })
 
 
-            await paymentDone.save()
-            return paymentDone
+            // await checkUser.save()
+            return checkUser;
         } catch (err) {
             console.log("Error saving payment data:", err);
 

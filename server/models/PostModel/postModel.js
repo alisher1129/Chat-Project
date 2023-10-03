@@ -7,12 +7,12 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref:'User'
+    ref: 'User'
 
-},
-  
-  
-title : {
+  },
+
+
+  title: {
     type: String,
     // required: true,
 
@@ -22,12 +22,15 @@ title : {
     default: "no photo"
 
   },
+  comments: {
+    type: String
+  }
   // postedBy: {
   //   // type: ObjectId,
   //   // ref:"User"
   //   // required: true,
   // },
-  
+
 
 
 });

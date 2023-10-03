@@ -1,4 +1,4 @@
-const { userPost, getPost, getAllPost,showUser} = require("../services/postServices")
+const { userPost, getPost, getAllPost,showUser ,userAllComment} = require("../services/postServices")
 
 
 
@@ -64,6 +64,17 @@ class postController {
             console.log(error);
         }
     }
+
+    async userComment(req, res) {
+        try {
+            const user = await userAllComment(req);
+            console.log(user);
+            res.status(200).json(user);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 }
 
 module.exports = new postController();

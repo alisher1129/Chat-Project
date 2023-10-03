@@ -28,7 +28,7 @@ import Button from 'react-bootstrap/Button';
 // }
 
 function PaymentForm() {
-    const [success, setSuccess] = useState(false)
+    // const [success, setSuccess] = useState(false)
     const stripe = useStripe()
     const navigate = useNavigate();
     const elements = useElements()
@@ -51,14 +51,19 @@ function PaymentForm() {
                         "x-access-token": localStorage.getItem("token")
                     }
                 });
-         console.log(response)
-         console.log(response.data)
+                // console.log("check f0r payment strip",response.data)
+                //  console.log(response.data)
          
-                if (response.data.payment === true) {
-                    console.log("Successful Payment")
-                    setSuccess(true)
-                    navigate('/profile')
-                }
+                // if (response.data.payment === true) {
+                //     console.log("Successful Payment")
+                    // setSuccess(true)
+                    // await response.promise;
+                    navigate("/profile")
+                    window.location.reload(true);
+
+                    // window.location.reload(true);
+
+                // }
 
             } catch (error) {
                 console.log("Error response isnt here", error)
@@ -70,7 +75,7 @@ function PaymentForm() {
     }
     return (
         <>
-            {!success ?
+            {
                 <form onSubmit={handleSubmit}  >
                     <fieldset className='FormGroup'>
                         <div className="FormRow">
@@ -87,14 +92,10 @@ function PaymentForm() {
                             <CardCvcElement  />
                         </div>
                     </fieldset>
-                    <Button className="custom-button "  variant="primary" size='lg'>Pay</Button>
+                    <Button className="custom-button " type='submit' variant="primary" size='lg'>Pay</Button>
 
                 </form>
-                :
-                <div className="payment-success">
-                    <h2>Payment successful</h2>
-                    <h3 className='Thank-you'>Thank you for your patronage</h3>
-                </div>
+            
             }
         </>
     )

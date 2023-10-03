@@ -12,7 +12,7 @@ class LoginService {
             });
 
 
-            if (user.password === req.body.password) {
+            if (user && user.password === req.body.password) {
                 var paymentStatus = false;
                 const token = jwt.sign({
                     id: user._id,
@@ -22,21 +22,34 @@ class LoginService {
                         expiresIn: 3600
                     })
                 console.log(token);
+                console.log("during login check user", user)
+
                 const checkUser = await MyPayment.findOne({
                     userId: user._id
                 })
 
-                if (checkUser && checkUser.payment === true) {
-                    if (checkUser.userId) {
+                console.log(checkUser)
+
+
+                if (checkUser) {
+                    if (checkUser.payment === true) {
                         paymentStatus = true;
                         console.log("Paid User")
 
                     }
                     else {
                         console.log("unpaid User")
+                        
 
                     }
                 }
+                else {
+                    paymentStatus = false;
+                    console.log("User not found in MyPayment schema");
+                }
+
+                console.log("just check user is available or not", checkUser)
+                console.log("checkuserPayment", checkUser.payment);
 
                 return { user, token: token, paymentStatus: paymentStatus };
             }

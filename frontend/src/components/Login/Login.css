@@ -1,0 +1,181 @@
+Login.css
+
+*{
+    background-color: cadetblue;
+}
+
+/* .login-con {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 80px;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+   */
+  /* .login-con h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .login-con form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .login-con form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .login-con form p {
+    color: red;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+  
+  .login-con form .custom-button {
+    display: block;
+    width: 100%;
+  } */
+  
+  /* Add any additional styling you need */
+  
+  /* design 2 */
+
+
+  /* Login.css */
+/* 
+.login-con {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-con h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .login-con form label {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .login-con form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .login-con form p {
+    color: red;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+  
+  .login-con form .custom-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .login-con form .custom-button:hover {
+    background-color: #0056b3;
+  }
+   */
+
+
+
+   /* design 3 */
+
+   /* Login.css */
+/* 
+.login-con {
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+  }
+  
+  .login-con h1 {
+    font-size: 32px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .login-con form label {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    color: #fff;
+  }
+  
+  .login-con form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .login-con form p {
+    color: red;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  .login-con form .custom-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .login-con form .custom-button:hover {
+    background-color: #0056b3;
+    color: #fff;
+  }
+   */
+/* 
+   *{
+    background-color:cornflowerblue;
+   } */
+.or{ 
+     margin: 0 auto;
+     font-weight: bolder;
+}
+.more{
+    font-weight: bolder;
+}

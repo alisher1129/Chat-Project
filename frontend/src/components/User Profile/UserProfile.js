@@ -6,69 +6,77 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import './UserProfile.css';
 
 
 function UserProfile() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const { postId, setPostId } = useContext(PostContext);
   const [postArray, setPostArray] = useState([]);
-  console.log(currentUser);
-  console.log("check user")
+  const [followersCount, setFollowersCount] = useState(0);
+  const [isFollowed, setIsFollowed] = useState(false);
+ 
   useEffect(() => {
     if (currentUser) {
-      console.log("currentUser", currentUser);
-      console.log(currentUser.data._id);
-      axios.get(`http://localhost:4000/getuserpost/${currentUser.data._id}`)
+      
+       axios.get(`http://localhost:4000/getuserpost/${currentUser.data._id}`)
         .then((res) => {
-          console.log("All Posts", res.data)
+          
           setPostArray(res.data);
-          console.log(postArray);
+          
+        
         }).catch((err) => { console.log(err) })
     }
   }, [currentUser])
-  console.log("currentUser")
-  console.log(currentUser);
-  console.log(postArray)
 
-
-
-
-
+ 
+  const handleFollowClick = () => {
+    // Toggle the follow status and increment/decrement followers accordingly
+    if (isFollowed) {
+      setFollowersCount((prevCount) => prevCount - 1);
+    } else {
+      setFollowersCount((prevCount) => prevCount + 1);
+    }
+    // Toggle the follow status
+    setIsFollowed(!isFollowed);
+  };
 
 
   return (
     <>
-    <div>{currentUser ?
-        (<div><h2> {currentUser.data.username}</h2><div>
-          <div ><div  > <h4>0</h4> <h4>Followers</h4> </div>
-          <div > <h4>0</h4><h4>Following</h4></div></div></div>
-          
-         
-          <div className='profile-btn' ><Button variant="primary">Follow</Button>
-            <Button variant="primary">Message</Button>
+    
+   <div className="user-profile-container">
+      {currentUser ? (
+        <div>
+          <h2>{currentUser.data.username}</h2>
+          <div className="user-stats">
+            <div className="followers">
+              <h4>{followersCount}</h4>
+              <h4>Followers</h4>
+            </div>
+            <div className="following">
+              <h4>0</h4>
+              <h4>Following</h4>
+            </div>
           </div>
-
-
-
-        
-
-
-          <hr></hr>
-          <div className='user-profile'>
+          <div className="profile-btn">
+            <Button onClick={handleFollowClick} variant="primary"> {isFollowed ? 'Unfollow' : 'Follow'}</Button>
+            <Button variant="primary"><Link style={{color:'white'}} to="/messenger" >Message</Link></Button>
+          </div>
+          <hr />
+          <div className="user-profile">
             {postArray.map((post) => (
-              < Card style={{ width: '25rem' }}>
-                <Card.Img variant="top" key={post._id} src={post.photo} alt="Post" />
+              <Card style={{ width: '25rem', height: '250px' }} key={post._id}>
+                <Card.Img width='200px' height='250px' variant="top" src={post.photo} alt="Post" />
               </Card>
             ))}
           </div>
-
-
         </div>
-        
-
-        ) : (<div></div>)
-      }
-</div>
+      ) : (
+        <div></div>
+      )}
+    </div>
+  );
       
     </>
   )

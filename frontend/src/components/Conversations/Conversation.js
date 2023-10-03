@@ -5,15 +5,16 @@ import "./Conversation.css"
 function Conversation({ conversation, currentUser }) {
 
     const [user, setUser] = useState(null);
-    const [loaded, setLoaded] = useState(false)
+    // const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         const friendId = conversation.members.find((m) => m !== currentUser.data._id);
-        console.log("friendId", friendId);
+        // console.log("friendId", friendId);
         const getUser = async () => {
             const res = await axios.get(`http://localhost:4000/getuser/${friendId}`);
-            console.log("try", res.data)
-            setUser(res.data, setLoaded(true));
+            // console.log("try", res.data)
+            // setUser(res.data, setLoaded(true));
+            setUser(res.data);
 
         }
         getUser();
@@ -41,7 +42,7 @@ function Conversation({ conversation, currentUser }) {
         <div className="conversation" >
 
             <img className="conversationImg"
-                src='https://media.licdn.com/dms/image/D4D03AQFsy-qbPchffQ/profile-displayphoto-shrink_800_800/0/1671038455077?e=2147483647&v=beta&t=W44P_qN4Jv0CoiopgShfiR0hEuLEt8EI-p4hRSk43Mo'
+                src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
                 alt='' />
             <span className='conversationName' >{user ? user.username : ''}</span>
 

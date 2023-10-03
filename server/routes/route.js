@@ -24,13 +24,17 @@ route.get("/getalluser", postController.getAllUserPost);
 route.post("/searchuser",postController.showAllUser)
 route.get("/allusers",userController.getAlluserDat)
 
+
+
+
 //message routers
 route.post('/conversation', conversationController.createNewConversation);
 route.get('/conversation/:userId', conversationController.getConversations);
 route.post('/sendmessage', messageController.sendMessage);
 route.get('/getmessage/:conversationId', messageController.getMessage);
 
-
+//comment routes
+route.post("/comment",postController.userComment)
 
 
 

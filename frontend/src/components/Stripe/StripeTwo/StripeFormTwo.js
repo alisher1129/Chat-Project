@@ -28,7 +28,7 @@ import Button from 'react-bootstrap/Button';
 
 function PaymentFormTwo() {
     const navigate = useNavigate();
-    const [success, setSuccess] = useState(false)
+    // const [success, setSuccess] = useState(false)
     const stripe = useStripe()
     const elements = useElements()
     const handleSubmit = async (e, action) => {
@@ -52,12 +52,12 @@ function PaymentFormTwo() {
                 })
                 console.log(response.data.payment)
 
-                if (response.data.payment) {
-                    console.log("Successful Payment")
-                    setSuccess(true)
-                    navigate('/profile')
+                // if (response.data.payment) {
+                //     console.log("Successful Payment")
+                    // setSuccess(true)
+                    navigate("/profile")
 
-                }
+                // }
             }
             catch (error) {
                 console.log("Error", error)
@@ -69,7 +69,7 @@ function PaymentFormTwo() {
     }
     return (
         <>
-            {!success ?
+            
                 <form onSubmit={handleSubmit}  >
                     <fieldset className='FormGroup'>
                         <div className="FormRow">
@@ -88,12 +88,7 @@ function PaymentFormTwo() {
                     </fieldset>
                     <Button className="custom-button " type='submit'  variant="primary" size='lg'>Pay</Button>
                 </form>
-                :
-                <div className="payment-success">
-                    <h2>Payment successful</h2>
-                    <h3 className='Thank-you'>Thank you for your patronage</h3>
-                </div>
-            }
+                
         </>
     )
 }

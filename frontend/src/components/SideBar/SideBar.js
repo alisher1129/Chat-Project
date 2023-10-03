@@ -32,7 +32,7 @@ const auth = JSON.parse(localStorage.getItem('auth'))
 
       <div>
 
-        {auth ? (
+        {/* {auth ? ( */}
           <div>
             <Navbar bg="light" data-bs-theme="light">
               <Container>
@@ -48,8 +48,9 @@ const auth = JSON.parse(localStorage.getItem('auth'))
 
               </Container>
             </Navbar>
-            <mian>{children}</mian>
-          </div>):(<div></div>) }
+            <main>{children}</main>
+          </div>
+           {/* ):(<div></div>) } */}
       </div>
 
     </>
