@@ -35,7 +35,7 @@ function App() {
       const myDecodedToken = decodeToken(token);
 
       const func = async () => {
-        await axios.get(`http://localhost:4000/getuser/${myDecodedToken.id}`).then((res) => {
+        await axios.get(`my_Api/getuser/${myDecodedToken.id}`).then((res) => {
 
           setCurrentUser(res)
 

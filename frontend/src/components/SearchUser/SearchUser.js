@@ -28,7 +28,7 @@ function SearchUser() {
 
 useEffect(()=>{
     const func = async () => {
-    await axios.post(`http://localhost:4000/searchuser`, {
+    await axios.post(`my_Api/searchuser`, {
     username: _name
   }).then((response) => {
     setData(response.data[0].userId.username);

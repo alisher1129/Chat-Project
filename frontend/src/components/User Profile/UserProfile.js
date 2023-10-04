@@ -19,7 +19,7 @@ function UserProfile() {
   useEffect(() => {
     if (currentUser) {
       
-       axios.get(`http://localhost:4000/getuserpost/${currentUser.data._id}`)
+       axios.get(`my_Api/getuserpost/${currentUser.data._id}`)
         .then((res) => {
           
           setPostArray(res.data);
