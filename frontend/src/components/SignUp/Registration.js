@@ -23,7 +23,7 @@ function Registration() {
         initialValues: initialValues,
         validationSchema: signUpSchemas,
         onSubmit: (values, action) => {
-            axios.post("my_Api/register", {
+            axios.post("http://localhost:4000/register", {
                 username: values.name,
                 email: values.email,
                 mobile: values.mobile,

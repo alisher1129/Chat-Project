@@ -4,7 +4,8 @@ import axios from 'axios'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-// import './SearchUser.css';
+import './Searchuser.css';
+
 
 
 
@@ -28,7 +29,7 @@ function SearchUser() {
 
 useEffect(()=>{
     const func = async () => {
-    await axios.post(`my_Api/searchuser`, {
+    await axios.post(`http://localhost:4000/searchuser`, {
     username: _name
   }).then((response) => {
     setData(response.data[0].userId.username);
@@ -76,7 +77,7 @@ const handleFollowClick = () => {
             </div>
           </div>
           <div className="profile-btn">
-            <Button onClick={handleFollowClick} variant="primary">F{isFollowed ? 'Unfollow' : 'Follow'}</Button>
+            <Button onClick={handleFollowClick} variant="primary">{isFollowed ? 'Unfollow' : 'Follow'}</Button>
             <Button variant="primary"><Link style={{color:'white'}} to="/messenger" >Message</Link></Button>
           </div>
           <hr />

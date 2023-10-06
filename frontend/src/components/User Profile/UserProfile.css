@@ -1,53 +1,78 @@
 /* UserProfile.css */
 .user-profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
- 
-  }
-  
-  .user-profile-container h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-   margin-left: 690px; 
-   text-transform: uppercase;
-   font-weight: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
 }
-  
-  
+
+.user-profile-container h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  margin-left: 570px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+
+.user-stats {
+  display: flex;
+
+  margin-bottom: 15px;
+  margin-left: 490px;
+}
+
+.followers,
+.following {
+  text-align: center;
+  padding: 20px;
+}
+
+.profile-btn {
+  display: flex;
+
+  margin-bottom: 10px;
+  margin-left: 490px;
+
+}
+
+.profile-btn button {
+  margin: 15px;
+}
+
+.user-profile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-profile .card {
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
+
+
+/* @media screen and (max-width: 576px) {
+  .user-profile-container {
+    width: 100%;
+  }
+
   .user-stats {
-    display: flex;
-   
-    margin-bottom: 20px;
-    margin-left: 630px;
+    flex-direction: column;
   }
-  
-  .followers,
-  .following {
-    text-align: center;
-    padding: 20px;
-  }
-  
+
   .profile-btn {
-    display: flex;
-    
-    margin-bottom: 20px;
-    margin-left: 630px;
-   
+    margin-top: 1rem;
   }
-  .profile-btn button {
-margin: 15px;
-  }
-  
+
   .user-profile {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
-  
-  .user-profile .card {
-    margin: 10px;
-    margin-bottom: 20px;
-  }
-  
+} */
+
+
+

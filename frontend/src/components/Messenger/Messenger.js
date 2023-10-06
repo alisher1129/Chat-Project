@@ -16,7 +16,7 @@ function Messenger() {
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessages, setNewMessages] = useState([]);
-    const [arrivalMessage, setArrivalMessage] = useState({ _id: null });
+    const [arrivalMessage, setArrivalMessage] = useState();
     const socket = useRef();
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const [onlineUsers, setOnlineUsers] = useState([]);
@@ -46,7 +46,7 @@ function Messenger() {
 
 
     useEffect(() => {
-        if (currentUser?.data?._id !== null) {
+        if (currentUser?._id !== null) {
             socket.current.emit("addUser", currentUser?._id);
             socket.current.on("getUsers", users => {
                 // console.log(users);
@@ -75,7 +75,7 @@ function Messenger() {
         const getMessages = async () => {
             try {
                 if (currentChat) {
-                    const res = await axios.get(`my_Api/getmessage/${currentChat?._id}`);
+                    const res = await axios.get(`http://localhost:4000/getmessage/${currentChat?._id}`);
                     // console.log("check for set messages", res)
                     // console.log(res)
                     setMessages(res.data);
@@ -106,7 +106,7 @@ function Messenger() {
                 text: newMessages
             });
             try {
-                const sendMessage = await axios.post(`my_Api/sendmessage`, message);
+                const sendMessage = await axios.post(`http://localhost:4000/sendmessage`, message);
                 setMessages([...messages, sendMessage.data]);
                 setNewMessages("");
             } catch (error) {
@@ -123,7 +123,7 @@ function Messenger() {
         const getConversation = async () => {
             try {
                 // if (currentUser) {
-                    const res = await axios.get(`my_Api/conversation/${currentUser?.data?._id}`);
+                    const res = await axios.get(`http://localhost:4000/conversation/${currentUser?.data?._id}`);
                     // console.log("dekho pehly", currentUser.data._id)
                     // console.log("conversation", res)
                     setConversation(res.data)

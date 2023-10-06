@@ -19,7 +19,10 @@ import Messenger from './components/Messenger/Messenger';
 
 
 
+
 function App() {
+  
+
   const location = useLocation();
   const isLoginPage = location.pathname === '/login'
   const payPage = location.pathname ==='/payment'; 
@@ -35,14 +38,14 @@ function App() {
       const myDecodedToken = decodeToken(token);
 
       const func = async () => {
-        await axios.get(`my_Api/getuser/${myDecodedToken.id}`).then((res) => {
-
+        await axios.get(`http://localhost:4000/getuser/${myDecodedToken.id}`).then((res) => {
+console.log("check res" , res)
           setCurrentUser(res)
 
-          // if (res.data !== null) {
+          if (res.data !== null) {
 
-          //   navigate('/profile')
-          // }
+            navigate('/profile')
+          }
         }).catch((error) => console.log(error));
         //  console.log(result)
         //  setCurrentUser(result)

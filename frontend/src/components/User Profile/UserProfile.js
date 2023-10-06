@@ -7,6 +7,8 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import './UserProfile.css';
+// import Helmet from 'react-helmet';
+
 
 
 function UserProfile() {
@@ -19,7 +21,7 @@ function UserProfile() {
   useEffect(() => {
     if (currentUser) {
       
-       axios.get(`my_Api/getuserpost/${currentUser.data._id}`)
+       axios.get(`http://localhost:4000/getuserpost/${currentUser.data._id}`)
         .then((res) => {
           
           setPostArray(res.data);
@@ -44,8 +46,13 @@ function UserProfile() {
 
   return (
     <>
+
+    
     
    <div className="user-profile-container">
+   {/* <Helmet>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Helmet> */}
       {currentUser ? (
         <div>
           <h2>{currentUser.data.username}</h2>
@@ -72,11 +79,12 @@ function UserProfile() {
             ))}
           </div>
         </div>
+        // just check
       ) : (
         <div></div>
       )}
     </div>
-  );
+
       
     </>
   )

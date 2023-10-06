@@ -25,7 +25,7 @@ function UserHomePage() {
 
 
   useEffect( () => {
-     axios.get(`my_Api/getalluser`)
+     axios.get(`http://localhost:4000/getalluser`)
       .then((res) => {
         setUserPosts(res.data)
         console.log("setUserPosts", res.data)
@@ -63,7 +63,7 @@ function UserHomePage() {
 
   const getUsers = async () => {
 
-    await axios.get(`my_Api/allusers`).then((response) => {
+    await axios.get(`http://localhost:4000/allusers`).then((response) => {
       setUserAll(response.data);
 
       // console.log("UserAll", response.data);
@@ -101,7 +101,7 @@ function UserHomePage() {
 
     try {
       const response = await axios.post(
-        'my_Api/comment',
+        'http://localhost:4000/comment',
         { comments: comment },
       );
 
