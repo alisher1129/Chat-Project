@@ -26,6 +26,7 @@ function App() {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login'
   const payPage = location.pathname ==='/payment'; 
+  const isSignpage = location.pathname === '/signup'
   const [currentUser, setCurrentUser] = useState(false);
   const [postId, setPostId] = useState(null);
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ console.log("check res" , res)
 
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <PostContext.Provider value={{ postId, setPostId }}>
-          {isLoginPage || payPage ? null : <SideBar />}
+          {isLoginPage || payPage || isSignpage ? null : <SideBar />}
           <Routes>
             {/* <Route path="/" element={<HomePage />} /> */}
             <Route path="/login" element={<UserLogin />} />

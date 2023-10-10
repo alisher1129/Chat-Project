@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { UserContext } from "../Context/UserContext";
 import axios from "axios";
-import { io } from "socket.io-client"
+// import { io } from "socket.io-client"
 import ChatOnline from "../ChatOnline/ChatOnline"
 import Conversation from "../Conversations/Conversation"
 import Message from "../Message/Message"
@@ -25,16 +25,16 @@ function Messenger() {
 
 
 
-    useEffect(() => {
-        socket.current = io("ws://localhost:8900");
-        socket.current.on("getMessage", (data) => {
-            setArrivalMessage({
-                sender: data.senderId,
-                text: data.text,
-                createdAt: Date.now(),
-            })
-        })
-    }, []);
+    // useEffect(() => {
+    //     socket.current = io("ws://localhost:8900");
+    //     socket.current.on("getMessage", (data) => {
+    //         setArrivalMessage({
+    //             sender: data.senderId,
+    //             text: data.text,
+    //             createdAt: Date.now(),
+    //         })
+    //     })
+    // }, []);
    
     // console.log("arrival message", arrivalMessage)
     // console.log("current  Chat ", currentChat)
@@ -45,15 +45,15 @@ function Messenger() {
     }, [arrivalMessage, currentChat]);
 
 
-    useEffect(() => {
-        if (currentUser?._id !== null) {
-            socket.current.emit("addUser", currentUser?._id);
-            socket.current.on("getUsers", users => {
-                // console.log(users);
-                setOnlineUsers(users);
-            })
-        }
-    }, [currentUser]);
+    // useEffect(() => {
+    //     if (currentUser?._id !== null) {
+    //         socket.current.emit("addUser", currentUser?._id);
+    //         socket.current.on("getUsers", users => {
+    //             // console.log(users);
+    //             setOnlineUsers(users);
+    //         })
+    //     }
+    // }, [currentUser]);
 
 
 
@@ -69,15 +69,13 @@ function Messenger() {
   
 
 
-    // console.log("chat ", currentChat)
 
     useEffect(() => {
         const getMessages = async () => {
             try {
                 if (currentChat) {
                     const res = await axios.get(`http://localhost:4000/getmessage/${currentChat?._id}`);
-                    // console.log("check for set messages", res)
-                    // console.log(res)
+                   
                     setMessages(res.data);
                 }
             } catch (error) {
@@ -87,7 +85,7 @@ function Messenger() {
         getMessages();
     }, [currentChat])
 
-    // console.log("messages", messages)
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -95,16 +93,16 @@ function Messenger() {
 
         if (currentUser) {
             const message = {
-                sender: currentUser._id,
+                sender: currentUser.data._id,
                 text: newMessages,
                 conversationId: currentChat._id,
             }
-            const receiverId = currentChat.members.find(member => member !== currentUser._id);
-            socket.current.emit("sendMessage", {
-                senderId: currentUser._id,
-                receiverId,
-                text: newMessages
-            });
+            // const receiverId = currentChat.members.find(member => member !== currentUser._id);
+            // socket.current.emit("sendMessage", {
+            //     senderId: currentUser._id,
+            //     receiverId,
+            //     text: newMessages
+            // });
             try {
                 const sendMessage = await axios.post(`http://localhost:4000/sendmessage`, message);
                 setMessages([...messages, sendMessage.data]);
@@ -122,13 +120,12 @@ function Messenger() {
     useEffect(() => {
         const getConversation = async () => {
             try {
-                // if (currentUser) {
+                if (currentUser) {
                     const res = await axios.get(`http://localhost:4000/conversation/${currentUser?.data?._id}`);
-                    // console.log("dekho pehly", currentUser.data._id)
-                    // console.log("conversation", res)
+                   
                     setConversation(res.data)
 
-                // }
+                }
             } catch (error) {
                 console.log(error);
             }
@@ -167,7 +164,7 @@ function Messenger() {
 
                                     {messages.map((m) => (
                                         <div key={m._id} ref={scrollRef}>
-                                            <Message message={m} own={m.sender === currentUser._id} />
+                                            <Message message={m} own={m.sender === currentUser.data._id} />
                                         </div>
                                     ))}
                                 </div>
