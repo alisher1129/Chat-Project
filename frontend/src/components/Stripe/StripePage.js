@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import Stripe from './StripeOne/StripePayment';
 import MyStripe from './StripeTwo/StripePaymentTwo';
+import { useContext, useEffect } from 'react'
+import { UserContext } from '../Context/UserContext';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,9 +15,21 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+
 function StripePage() {
     const navigate = useNavigate();
-    const auth = JSON.parse(localStorage.getItem('auth'))
+    const { currentUser, setCurrentUser } = useContext(UserContext);
+    const auth = JSON.parse(localStorage.getItem('auth'));
+    console.log("check for payment" , currentUser)
+
+    useEffect(()=>{
+        if(currentUser == false){
+            navigate("/login")
+          }
+    },[])
+    
+
+
 
     function logout() {
 
@@ -34,7 +48,7 @@ function StripePage() {
     const [showTwo, setShowTwo] = useState(false);
     return (
 
-        <>
+        <> 
             <Navbar bg="light" data-bs-theme="light">
                 <Navbar.Brand style={{marginLeft:'30px'}} href="#home">ASR</Navbar.Brand>
                 <Nav className="me-auto">

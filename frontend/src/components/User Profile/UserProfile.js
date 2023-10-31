@@ -3,20 +3,35 @@ import { useContext, useEffect } from 'react'
 import { UserContext } from '../Context/UserContext';
 import { PostContext } from '../Context/PostContext';
 import { Link } from 'react-router-dom'
+// import UserLogin from './components/Login/UserLogin';
+import UserLogin from '../Login/UserLogin';
+import { useNavigate } from 'react-router-dom'
+
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+
+
+
 import './UserProfile.css';
 // import Helmet from 'react-helmet';
 
 
 
 function UserProfile() {
+  const navigate = useNavigate();
+
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const { postId, setPostId } = useContext(PostContext);
   const [postArray, setPostArray] = useState([]);
   const [followersCount, setFollowersCount] = useState(0);
   const [isFollowed, setIsFollowed] = useState(false);
+
+
+  
+
+
+ 
  
   useEffect(() => {
     if (currentUser) {
@@ -28,6 +43,9 @@ function UserProfile() {
           
         
         }).catch((err) => { console.log(err) })
+    }
+    else{
+      navigate("/login")
     }
   }, [currentUser])
 

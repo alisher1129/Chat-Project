@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useEffect,useContext, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from '../Context/UserContext';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,12 @@ function CreatePost() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const preset_key = 'qcwkzvts';
   const cloud_name = 'dmofvfvks';
+
+  useEffect(()=>{
+    if(currentUser == false){
+        navigate("/login")
+      }
+},[])
 
   const handleUpload = async () => {
     const formData = new FormData();

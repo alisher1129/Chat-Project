@@ -21,12 +21,13 @@ import Messenger from './components/Messenger/Messenger';
 
 
 function App() {
-  
+
 
   const location = useLocation();
   const isLoginPage = location.pathname === '/login'
-  const payPage = location.pathname ==='/payment'; 
+  const payPage = location.pathname === '/payment';
   const isSignpage = location.pathname === '/signup'
+  const ReactRun = location.pathname === '/'
   const [currentUser, setCurrentUser] = useState(false);
   const [postId, setPostId] = useState(null);
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ function App() {
 
       const func = async () => {
         await axios.get(`http://localhost:4000/getuser/${myDecodedToken.id}`).then((res) => {
-console.log("check res" , res)
+          console.log("check res", res)
           setCurrentUser(res)
 
           if (res.data !== null) {
@@ -68,7 +69,7 @@ console.log("check res" , res)
 
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <PostContext.Provider value={{ postId, setPostId }}>
-          {isLoginPage || payPage || isSignpage ? null : <SideBar />}
+          {isLoginPage || payPage || isSignpage || ReactRun ? null : <SideBar />}
           <Routes>
             {/* <Route path="/" element={<HomePage />} /> */}
             <Route path="/login" element={<UserLogin />} />
@@ -84,8 +85,7 @@ console.log("check res" , res)
             {/* <Routes> */}
 
 
-
-            <Route path="/profile" element={<UserProfile />} />
+           < Route path="/profile" element={<UserProfile />} />
             <Route path="/create" element={<CreatePost />} />
             <Route path="/userhome" element={<UserHomePage />} />
             <Route path="/navbar" element={<SideBar />} />

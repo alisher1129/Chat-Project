@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { UserContext } from "../Context/UserContext";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 // import { io } from "socket.io-client"
 import ChatOnline from "../ChatOnline/ChatOnline"
 import Conversation from "../Conversations/Conversation"
@@ -11,7 +12,8 @@ import "./Messenger.css"
 
 
 function Messenger() {
-    
+    const navigate = useNavigate();
+
     const [conversation, setConversation] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
@@ -22,7 +24,11 @@ function Messenger() {
     const [onlineUsers, setOnlineUsers] = useState([]);
     const scrollRef = useRef();
 
-
+    useEffect(()=>{
+        if(currentUser == false){
+            navigate("/login")
+          }
+    },[])
 
 
     // useEffect(() => {

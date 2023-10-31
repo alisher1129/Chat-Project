@@ -10,7 +10,7 @@ function Message({message,own}) {
 
                 <div className="messageTop">
 
-                    <img className="messageImg" src='https://media.licdn.com/dms/image/D4D03AQFsy-qbPchffQ/profile-displayphoto-shrink_800_800/0/1671038455077?e=2147483647&v=beta&t=W44P_qN4Jv0CoiopgShfiR0hEuLEt8EI-p4hRSk43Mo' alt='' />
+                    <img className="messageImg" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt='' />
                     <p className="messageText">{message.text}</p>
                 </div>
                 <div className="messageBottom">{format(message.createdAt)}</div>
