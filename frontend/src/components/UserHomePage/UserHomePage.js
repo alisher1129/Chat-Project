@@ -119,7 +119,7 @@ function UserHomePage() {
     <>
       <div className='user-homepage'>
 
-        <div ><h1>UserHomePage</h1></div>
+        {/* <div ><h1>UserHomePage</h1></div> */}
         <div className='search-bar relative'>
           <form onSubmit={handleFindUser}>
             <input

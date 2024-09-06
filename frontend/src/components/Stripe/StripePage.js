@@ -20,11 +20,11 @@ function StripePage() {
     const navigate = useNavigate();
     const { currentUser, setCurrentUser } = useContext(UserContext);
     const auth = JSON.parse(localStorage.getItem('auth'));
-    console.log("check for payment" , currentUser)
+    
 
     useEffect(()=>{
         if(currentUser == false){
-            navigate("/login")
+            navigate("/")
           }
     },[])
     
@@ -38,7 +38,7 @@ function StripePage() {
         localStorage.removeItem('token');
         console.log("user logged out ")
         localStorage.setItem('auth', JSON.stringify(false))
-        navigate('/login')
+        navigate('/')
 
 
     }

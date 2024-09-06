@@ -1,4 +1,4 @@
-const userModel = require("../models/userModel")
+const userModel = require("../models/userModel/userModel")
 const MyPayment = require("../models/StripeModel/stripeModel")
 const stripe = require("stripe")("sk_test_51NkkwXAXUbI3cuY9sR8i98U3S3jaRucU6KMmWQWJjRnpkq7rMNUIWixeFgiRNU1ZNBcwrDH3lbfEWyBixIm34ATE00IyNMDnXP")
 const jwt = require('jsonwebtoken');

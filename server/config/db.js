@@ -9,6 +9,7 @@ const mongoURI = 'mongodb://localhost:27017/DataBase';
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 10000,
 }).then(() => {
   console.log("DataBase is Connected")
 }).catch((err) => {

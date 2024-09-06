@@ -4,7 +4,7 @@ import React from 'react'
 import { signUpSchemas } from '../schemas/SignUpYup';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-// import UserLogin from '../Login/UserLogin';
+import UserLogin from '../Login/UserLogin';
 import Button from 'react-bootstrap/Button';
 import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 
@@ -30,7 +30,7 @@ function Registration() {
                 password: values.password,
 
             }).then((res) => {
-                navigate('/login')
+                navigate('/')
                 console.log("Registered Successfully,Now You Have to Login First!")
             }).catch((err) => { console.log("Not Registered, Please Registered  Again", err) })
 
@@ -159,7 +159,7 @@ function Registration() {
                                 <label>Email Address</label>
                                 <MDBInput wrapperClass='mb-4'
                                     type='email'
-
+                                    autoComplete='off'
                                     name='email'
                                     id='email'
                                     placeholder='name@example.com'
@@ -187,8 +187,9 @@ function Registration() {
                                 <label>Password</label>
 
                                 <MDBInput wrapperClass='mb-4' type='password'
-                                    autoComplete='off'
+                                
                                     name='password'
+                                    autoComplete='off'
                                     id='password'
                                     placeholder='Password'
                                     value={values.password}

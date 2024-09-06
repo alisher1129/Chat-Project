@@ -19,7 +19,7 @@ const auth = JSON.parse(localStorage.getItem('auth'))
     localStorage.removeItem('token');
     console.log("user logged out ")
     localStorage.setItem('auth', JSON.stringify(false))
-    navigate('/login')
+    navigate('/')
 
 
   }

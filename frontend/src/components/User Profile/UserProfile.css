@@ -1,4 +1,4 @@
-/* UserProfile.css */
+UserProfile.css
 .user-profile-container {
   display: flex;
   flex-direction: column;
@@ -54,7 +54,7 @@
 
 
 
-/* @media screen and (max-width: 576px) {
+@media screen and (max-width: 576px) {
   .user-profile-container {
     width: 100%;
   }
@@ -72,7 +72,11 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-} */
+}
 
+
+.parent{
+  display: flex;
+}
 
 

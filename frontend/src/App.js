@@ -24,14 +24,13 @@ function App() {
 
 
   const location = useLocation();
-  const isLoginPage = location.pathname === '/login'
   const payPage = location.pathname === '/payment';
   const isSignpage = location.pathname === '/signup'
   const ReactRun = location.pathname === '/'
   const [currentUser, setCurrentUser] = useState(false);
   const [postId, setPostId] = useState(null);
   const navigate = useNavigate();
-  // console.log(isLoginPage)
+  
   useEffect(() => {
 
     const token = localStorage.getItem('token')
@@ -41,7 +40,7 @@ function App() {
 
       const func = async () => {
         await axios.get(`http://localhost:4000/getuser/${myDecodedToken.id}`).then((res) => {
-          console.log("check res", res)
+          
           setCurrentUser(res)
 
           if (res.data !== null) {
@@ -49,10 +48,7 @@ function App() {
             navigate('/profile')
           }
         }).catch((error) => console.log(error));
-        //  console.log(result)
-        //  setCurrentUser(result)
-
-        // 
+         
       }
       func();
     }
@@ -69,10 +65,10 @@ function App() {
 
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <PostContext.Provider value={{ postId, setPostId }}>
-          {isLoginPage || payPage || isSignpage || ReactRun ? null : <SideBar />}
+          { payPage || isSignpage || ReactRun ? null : <SideBar />}
           <Routes>
             {/* <Route path="/" element={<HomePage />} /> */}
-            <Route path="/login" element={<UserLogin />} />
+            <Route path="/" element={<UserLogin />} />
             <Route path="/signup" element={<Registration />} />
             <Route path="/payment" element={<StripePage />} />
 

@@ -43,7 +43,7 @@ function CreatePost() {
     // Then, submit the title and image to your server
     axios
       .post(
-        'http://localhost:4000/createPost',
+        'http://localhost:3000/createPost',
         {
           title: title,
           photo: Image,

@@ -1,4 +1,4 @@
-const User = require("../models/userModel")
+const User = require("../models/userModel/userModel")
 const crypto = require("crypto");
 const sgMail = require("@sendgrid/mail");
 require("dotenv").config()

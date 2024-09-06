@@ -1,5 +1,5 @@
 const postModel = require("../models/PostModel/postModel");
-const userModel = require("../models/userModel")
+const userModel = require("../models/userModel/userModel")
 
 const jwt = require('jsonwebtoken')
 
@@ -8,14 +8,13 @@ class postData {
         let { title, photo } = req.body;
         try {
             const token = req.headers['x-access-token'];
-            console.log(token)
+        
             const val = jwt.decode(token);
-            console.log(val.id);
-            console.log("val", val)
-            const checkUser = await postModel.findOne({
-                userId: val.id
-            })
-            console.log(checkUser)
+        
+            // const checkUser = await postModel.findOne({
+            //     userId: val.id
+            // })
+        
             const savePost = postModel({
                 userId: val.id,
                 title: title,
